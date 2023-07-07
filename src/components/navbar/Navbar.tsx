@@ -22,11 +22,13 @@ const Navbar = () => {
 
       <div className="flex gap-6 items-center md:ml-auto">
         <span className="hidden md:flex gap-6 items-center">
-          <Link to="">Sign in</Link>
           <HiOutlineSearch className={styles.icon} />
           <HiOutlineHeart className={styles.icon} />
         </span>
         <HiOutlineShoppingCart className={styles.icon} />
+        <Link to="" className="hidden md:flex">
+          Sign in
+        </Link>
       </div>
     </div>
   );
