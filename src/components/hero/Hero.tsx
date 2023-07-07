@@ -62,7 +62,7 @@ const Hero = () => {
             index === activeIndex ? "opacity-100" : "opacity-0"
           } opacity ease-in-out duration-[2s]`}
         >
-          <div className="absolute left-10 top-2/4 translate-y--2/4 flex">
+          <div className="absolute left-10 top-1/3 md:top-2/4 translate-y--2/4 flex">
             <div
               className={`border-solid border-black border-t-2 px-3 mx-6 mt-2 hidden md:block ${
                 index === activeIndex
@@ -82,7 +82,7 @@ const Hero = () => {
                 {content[item].title}
               </h1>
               <h4
-                className={`text-6xl ${
+                className={`text-5xl md:text-6xl ${
                   index === activeIndex
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 translate-x-[15rem]"
