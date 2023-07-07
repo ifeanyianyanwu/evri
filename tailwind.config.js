@@ -10,6 +10,7 @@ export default {
         "hero-one": "url('/src/assets/Home-Background-One.webp')",
         "hero-two": "url('/src/assets/Home-Background-Two.webp')",
         "hero-three": "url('/src/assets/Home-Background-Three.webp')",
+        brands: "url('/src/assets/brands-bg.webp')",
       },
       // animation: {
       //   wobble: "wobble 1.5s ease-in-out infinite",
