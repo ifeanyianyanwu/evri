@@ -100,10 +100,10 @@ const Hero = () => {
                     : "opacity-0 translate-x-[15rem]"
                 } fader ease-out duration-[1s] delay-100`}
               >
-                <Link to="" className="">
+                <Link to="" className="text-sm">
                   {content[item].button}
                 </Link>
-                <span className="absolute w-1/5 h-0.5 bg-black bottom-0 group-hover:w-full transition-all"></span>
+                <span className="absolute w-1/5 h-0.5 bg-black bottom-0 group-hover:w-full transition-all duration-[0.5s] ease-in-out"></span>
               </div>
             </div>
           </div>
