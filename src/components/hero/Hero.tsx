@@ -1,6 +1,7 @@
 import Navbar from "../navbar/Navbar";
 import React, { useEffect, useState } from "react";
 import { styles } from "../../styles";
+import { Link } from "react-router-dom";
 
 type Content = {
   [key: string]: { title: string; text: string; button: string };
@@ -52,25 +53,25 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative h-screen w-full">
+    <div className="relative h-screen w-full stack">
       <Navbar />
       {children.map((item, index) => (
         <div
           key={index}
-          className={`inset-0 bg-cover bg-center absolute z-[-5] bg-hero-${item} ${
+          className={`bg-cover bg-center h-screen w-full bg-hero-${item} ${
             index === activeIndex ? "opacity-100" : "opacity-0"
           } opacity ease-in-out duration-[2s]`}
         >
           <div className="absolute left-10 top-2/4 translate-y--2/4 flex">
             <div
-              className={`border-solid border-black border-t-2 px-3 mx-6 mt-2 ${
+              className={`border-solid border-black border-t-2 px-3 mx-6 mt-2 hidden md:block ${
                 index === activeIndex
                   ? "translate-x-0 opacity-100"
                   : "translate-x-6 opacity-0"
               } transform ease-out duration-[1s]`}
             ></div>
 
-            <div>
+            <div className="flex flex-col gap-4">
               <h1
                 className={`${
                   index === activeIndex
@@ -89,6 +90,18 @@ const Hero = () => {
               >
                 {content[item].text}
               </h4>
+              <div
+                className={`relative w-fit flex flex-col pb-3 group cursor-pointer z-[1] ${
+                  index === activeIndex
+                    ? "opacity-100 translate-x-0"
+                    : "opacity-0 translate-x-[15rem]"
+                } fader ease-out duration-[1s] delay-100`}
+              >
+                <Link to="" className="">
+                  {content[item].button}
+                </Link>
+                <span className="absolute w-1/5 h-0.5 bg-black bottom-0 group-hover:w-full transition-all"></span>
+              </div>
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="flex justify-between px-[5%] md:px-10 py-7 items-center gap-6 z-10">
+    <div className="flex justify-between px-[5%] md:px-10 py-7 items-center gap-6 z-20 absolute top-0 w-full">
       <HiMenu className={`${styles.icon} md:hidden block`} />
       <span className="w-[80px] h-[50px] mx-auto md:mx-0">
         <Logo />

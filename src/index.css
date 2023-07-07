@@ -9,3 +9,11 @@
   padding: 0;
   margin: 0;
 }
+.stack {
+  display: grid;
+  grid-template-areas: "stack";
+  place-items: center;
+}
+.stack > * {
+  grid-area: stack;
+}
