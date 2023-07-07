@@ -1,7 +1,19 @@
-import React from "react";
+import { ReactNode } from "react";
 
-const Section = () => {
-  return <div>Section</div>;
+type BackGround = "none" | "brands";
+
+type IProps = {
+  id?: string;
+  background?: BackGround;
+  children: ReactNode;
+};
+
+const Section = ({ id, children, background }: IProps) => {
+  return (
+    <section id={id} className={`bg-${background || "none"} w-full py-20`}>
+      {children}
+    </section>
+  );
 };
 
 export default Section;
