@@ -17,7 +17,7 @@ const Hero = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       updateIndex(activeIndex + 1);
-    }, 5000);
+    }, 6000);
 
     return () => {
       if (timer) {
