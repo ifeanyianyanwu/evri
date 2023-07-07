@@ -35,7 +35,12 @@ const Explore = () => {
     <Section id="explore">
       <Container className="flex gap-10 flex-col md:flex-row">
         {children.map((item, i) => (
-          <div key={item} className={`relative overflow-hidden group/item`}>
+          <div
+            key={item}
+            className={`relative overflow-hidden group/item ${
+              i === 2 && "lg:block block md:hidden"
+            }`}
+          >
             <img
               src={content[item].img}
               alt="image"
@@ -60,7 +65,3 @@ const Explore = () => {
 };
 
 export default Explore;
-
-// ${
-//   i === 2 && "lg:block block md:hidden group"
-// }
