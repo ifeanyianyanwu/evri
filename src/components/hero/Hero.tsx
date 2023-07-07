@@ -1,7 +1,9 @@
 import Navbar from "../navbar/Navbar";
-import React, { useEffect, useState } from "react";
-import { styles } from "../../styles";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ToggleNavbar from "../navbar/ToggleNavbar";
+import { CgArrowLongRight } from "react-icons/cg";
+import { styles } from "../../styles";
 
 type Content = {
   [key: string]: { title: string; text: string; button: string };
@@ -55,6 +57,7 @@ const Hero = () => {
   return (
     <div className="relative h-screen w-full stack">
       <Navbar />
+      <ToggleNavbar />
       {children.map((item, index) => (
         <div
           key={index}
@@ -106,6 +109,24 @@ const Hero = () => {
           </div>
         </div>
       ))}
+      <div className="absolute bottom-10 left-10 mx-0 md:left-20 md:mx-6 flex gap-4">
+        {children.map((item, index) => (
+          <div
+            key={index}
+            onClick={() => setActiveIndex(index)}
+            className={`p-[3.5px] rounded-full cursor-pointer ${
+              index === activeIndex ? "bg-slate-900" : "bg-slate-400"
+            }`}
+          ></div>
+        ))}
+      </div>
+      <a
+        href="#explore"
+        className="animate-bounce absolute bottom-8 right-4 flex flex-col gap-12 items-center cursor-pointer"
+      >
+        <p className="text-xs font-semibold rotate-90">SCROLL DOWN</p>
+        <CgArrowLongRight className={`${styles.icon} rotate-90`} />
+      </a>
     </div>
   );
 };
