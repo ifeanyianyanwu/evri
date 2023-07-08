@@ -21,3 +21,6 @@
 .body-no-scroll {
   overflow: hidden;
 }
+.h-dvh {
+  height: 100dvh;
+}

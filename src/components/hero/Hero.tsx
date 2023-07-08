@@ -67,7 +67,7 @@ const Hero = () => {
   ];
 
   return (
-    <div className="relative h-screen w-full stack">
+    <div className="relative h-screen h-dvh w-full stack">
       <Navbar />
       {contents.map((item, index) => (
         <div
