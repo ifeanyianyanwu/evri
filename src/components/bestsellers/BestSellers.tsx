@@ -45,6 +45,7 @@ const BestSellers = () => {
             >
               <div className="overflow-hidden">
                 <img
+                  loading="lazy"
                   src={item.image}
                   alt="img"
                   className="h-[100%] w-[100%] aspect-square group-hover/card:scale-110 transition-all duration-[0.5s] ease-in-out"
