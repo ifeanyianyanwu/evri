@@ -1,11 +1,17 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import modalsReducer from "./features/modals/modalsSlice";
 import { storeApi } from "./features/api/apiSlice";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
 // ...
+
+const rootReducer = combineReducers({
+  modals: modalsReducer,
+  [storeApi.reducerPath]: storeApi.reducer,
+});
+
 const store = configureStore({
-  reducer: { modals: modalsReducer, [storeApi.reducerPath]: storeApi.reducer },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(storeApi.middleware),
 });
