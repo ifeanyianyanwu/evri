@@ -16,46 +16,53 @@ const BestSellers = () => {
 
   return (
     <Section>
-      <Container className="grid grid-cols-2 lg:grid-cols-4  gap-8">
-        {error ? (
-          <>An error occured</>
-        ) : isLoading ? (
-          <>Loading...</>
-        ) : (
-          <div className="col-span-2 md:col-span-1 relative">
-            <h1 className="text-5xl font-extralight text-gray-700">
-              Explore Our Bestsellers
-            </h1>
-            <p className="my-6 text-gray-600">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit sint
-              delectus perferendis
-            </p>
-            <span className="absolute w-8 h-0.5 bg-black bottom-0"></span>
-          </div>
-        )}
-        {bestSellers?.map((item, index) => (
-          <div
-            key={item.id}
-            className={`grid gap-4 overflow-hidden group/card cursor-pointer ${
-              index === bestSellers.length - 1 ? "md:grid hidden" : ""
-            }`}
-          >
-            <div className="overflow-hidden">
-              <img
-                src={item.image}
-                alt="img"
-                className="max-w-[100%] aspect-square group-hover/card:scale-110 transition-all duration-[0.5s] ease-in-out"
-              />
-            </div>
-            <div className="translate-y-[30px] grid gap-2 p-2 group-hover/card:translate-y-0 transition-all duration-500">
-              <p className="capitalize text-gray-600">{item.name}</p>
-              <p className="text-gray-600">
-                {currencyFormat.format(item.price)}
+      <Container>
+        <div className="grid grid-cols-2 lg:grid-cols-4  gap-8">
+          {error ? (
+            <>An error occured</>
+          ) : isLoading ? (
+            <>Loading...</>
+          ) : (
+            <div className="col-span-2 md:col-span-1 relative">
+              <h1 className="text-5xl font-extralight text-gray-700">
+                Explore Our Bestsellers
+              </h1>
+              <p className="my-6 text-gray-600">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit
+                sint delectus perferendis
               </p>
-              <div className="text-gray-600">gfgfdgffgghyhug</div>
+              <span className="absolute w-8 h-0.5 bg-black bottom-0"></span>
             </div>
-          </div>
-        ))}
+          )}
+          {bestSellers?.map((item, index) => (
+            <div
+              key={item.id}
+              className={`grid gap-4 overflow-hidden group/card cursor-pointer ${
+                index === bestSellers.length - 1 ? "md:grid hidden" : ""
+              }`}
+            >
+              <div className="overflow-hidden">
+                <img
+                  src={item.image}
+                  alt="img"
+                  className="max-w-[100%] aspect-square group-hover/card:scale-110 transition-all duration-[0.5s] ease-in-out"
+                />
+              </div>
+              <div className="translate-y-[30px] grid gap-2 p-2 group-hover/card:translate-y-0 transition-all duration-500">
+                <p className="capitalize text-gray-600">{item.name}</p>
+                <p className="text-gray-600">
+                  {currencyFormat.format(item.price)}
+                </p>
+                <div className="text-gray-600">gfgfdgffgghyhug</div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="grid place-content-center mt-14">
+          <button className="border-solid border-black border px-6 py-3 hover:bg-gray-800 hover:text-white transition-all duration-300">
+            SEE ALL PRODUCTS
+          </button>
+        </div>
       </Container>
     </Section>
   );
