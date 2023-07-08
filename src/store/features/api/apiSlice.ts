@@ -3,28 +3,17 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const storeApi = createApi({
   reducerPath: "storeApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://fakestoreapi.com/",
+    baseUrl: "https://course-api.com/",
   }),
   refetchOnMountOrArgChange: 3600,
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: () => "products",
+      query: () => "react-store-products",
     }),
-    getProduct: builder.query({
-      query: (id) => `products/${id}`,
-    }),
-    getBestSellers: builder.query({
-      query: () => "products?limit=7",
-    }),
-    getCategories: builder.query({
-      query: () => "products/categories",
+    getProductInfo: builder.query({
+      query: (productId) => `react-store-single-product?id=${productId}`,
     }),
   }),
 });
 
-export const {
-  useGetProductsQuery,
-  useGetProductQuery,
-  useGetBestSellersQuery,
-  useGetCategoriesQuery,
-} = storeApi;
+export const { useGetProductsQuery, useGetProductInfoQuery } = storeApi;

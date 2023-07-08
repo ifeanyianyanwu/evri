@@ -93,7 +93,7 @@ const Hero = () => {
                   index === activeIndex
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 translate-x-[15rem]"
-                } fader ease-out duration-[1s]`}
+                } fader ease-out duration-[1s] text-gray-600`}
               >
                 {item.content.title}
               </h1>
@@ -102,7 +102,7 @@ const Hero = () => {
                   index === activeIndex
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 translate-x-[15rem]"
-                } fader ease-out duration-[1s] delay-100`}
+                } fader ease-out duration-[1s] delay-100 text-gray-700`}
               >
                 {item.content.text}
               </h4>
@@ -113,10 +113,10 @@ const Hero = () => {
                     : "opacity-0 translate-x-[15rem]"
                 } fader ease-out duration-[1s] delay-100`}
               >
-                <Link to="" className="text-sm">
+                <Link to="" className="text-sm text-gray-600">
                   {item.content.link}
                 </Link>
-                <span className="absolute w-1/5 h-0.5 bg-black bottom-0 group-hover/link:w-full transition-all duration-[0.5s] ease-in-out"></span>
+                <span className="absolute w-1/5 h-0.5 bg-gray-600 bottom-0 group-hover/link:w-full transition-all duration-[0.5s] ease-in-out"></span>
               </div>
             </div>
           </div>
@@ -137,7 +137,9 @@ const Hero = () => {
         href="#explore"
         className="animate-bounce absolute bottom-8 right-4 flex flex-col gap-12 items-center cursor-pointer"
       >
-        <p className="text-xs font-semibold rotate-90">SCROLL DOWN</p>
+        <p className="text-xs font-semibold rotate-90 text-gray-600">
+          SCROLL DOWN
+        </p>
         <CgArrowLongRight className={`${styles.icon} rotate-90`} />
       </a>
     </div>

@@ -32,8 +32,12 @@ const Navbar = () => {
         <Logo />
       </span>
       <span className="hidden md:flex gap-6 items-center">
-        <Link to="">Home</Link>
-        <Link to="">Shop</Link>
+        <Link to="" className="text-gray-700">
+          Home
+        </Link>
+        <Link to="" className="text-gray-700">
+          Shop
+        </Link>
       </span>
 
       <div className="flex gap-6 items-center md:ml-auto">
@@ -45,7 +49,7 @@ const Navbar = () => {
           className={styles.icon}
           onClick={handleCartBtnClick}
         />
-        <Link to="" className="hidden md:flex">
+        <Link to="" className="hidden md:flex text-gray-700">
           Sign in
         </Link>
       </div>

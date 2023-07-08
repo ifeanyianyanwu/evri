@@ -45,7 +45,7 @@ const Explore = () => {
           <div
             key={index}
             className={`relative overflow-hidden group/item ${
-              index === 2 && "lg:block block md:hidden"
+              index === contents.length - 1 ? "lg:block block md:hidden" : ""
             }`}
           >
             <img
@@ -54,14 +54,16 @@ const Explore = () => {
               className="w-full group-hover/item:scale-110 transition-all duration-[1s] ease-in-out"
             />
             <div className="absolute top-10 left-10 flex flex-col gap-4">
-              <h1 className="text-2xl font-semibold">{item.content.title}</h1>
+              <h1 className="text-2xl font-semibold text-gray-700">
+                {item.content.title}
+              </h1>
               <div
                 className={`relative w-fit flex flex-col pb-3 group cursor-pointer fader ease-out duration-[1s] delay-100`}
               >
-                <Link to="" className="text-sm">
+                <Link to="" className="text-sm text-gray-600">
                   {item.content.link}
                 </Link>
-                <span className="absolute w-1/5 h-0.5 bg-black bottom-0 group-hover:w-full transition-all duration-[0.5s] ease-in-out"></span>
+                <span className="absolute w-1/5 h-0.5 bg-gray-600 bottom-0 group-hover:w-full transition-all duration-[0.5s] ease-in-out"></span>
               </div>
             </div>
           </div>
