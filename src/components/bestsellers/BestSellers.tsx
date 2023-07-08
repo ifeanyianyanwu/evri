@@ -50,7 +50,7 @@ const BestSellers = () => {
                   className="max-w-[100%] aspect-square group-hover/card:scale-110 transition-all duration-[0.5s] ease-in-out"
                 />
               </div>
-              <div className="translate-y-[30px] grid gap-2 p-2 group-hover/card:translate-y-0 transition-all duration-500">
+              <div className="translate-y-[40px] grid gap-2 p-2 group-hover/card:translate-y-0 transition-all duration-500">
                 <p className="capitalize text-gray-600">{item.name}</p>
                 <p className="text-gray-600">
                   {currencyFormat.format(item.price)}
