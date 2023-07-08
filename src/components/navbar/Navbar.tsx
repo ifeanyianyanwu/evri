@@ -8,15 +8,18 @@ import Logo from "../../assets/Logo";
 import { styles } from "../../styles";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { showNavbar } from "../../store/features/modals/modalsSlice";
+import { showCart, showNavbar } from "../../store/features/modals/modalsSlice";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
 
-  const navBarShown = useAppSelector((state) => state.modals.navBarShown);
+  const navbarShown = useAppSelector((state) => state.modals.navbarShown);
 
   const handleMenuClick = () => {
-    dispatch(showNavbar(!navBarShown));
+    dispatch(showNavbar(!navbarShown));
+  };
+  const handleCartBtnClick = () => {
+    dispatch(showCart(true));
   };
 
   return (
@@ -38,7 +41,10 @@ const Navbar = () => {
           <HiOutlineSearch className={styles.icon} />
           <HiOutlineHeart className={styles.icon} />
         </span>
-        <HiOutlineShoppingCart className={styles.icon} />
+        <HiOutlineShoppingCart
+          className={styles.icon}
+          onClick={handleCartBtnClick}
+        />
         <Link to="" className="hidden md:flex">
           Sign in
         </Link>

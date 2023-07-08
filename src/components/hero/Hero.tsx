@@ -69,7 +69,6 @@ const Hero = () => {
   return (
     <div className="relative h-screen w-full stack">
       <Navbar />
-      <ToggleNavbar />
       {contents.map((item, index) => (
         <div
           key={index}

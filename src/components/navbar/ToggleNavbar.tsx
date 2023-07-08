@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { showNavbar } from "../../store/features/modals/modalsSlice";
+import { showCart, showNavbar } from "../../store/features/modals/modalsSlice";
 import {
   HiOutlineHeart,
   HiOutlineSearch,
@@ -14,10 +14,14 @@ import { Link } from "react-router-dom";
 const ToggleNavbar = () => {
   const dispatch = useAppDispatch();
 
-  const navBarShown = useAppSelector((state) => state.modals.navBarShown);
+  const navbarShown = useAppSelector((state) => state.modals.navbarShown);
 
   const handleMenuClick = () => {
-    dispatch(showNavbar(!navBarShown));
+    dispatch(showNavbar(!navbarShown));
+  };
+
+  const handleCartBtnClick = () => {
+    dispatch(showCart(true));
   };
 
   const nav: Element = document.getElementById("mobile-nav") as Element;
@@ -26,8 +30,10 @@ const ToggleNavbar = () => {
     <>
       {createPortal(
         <div
-          className={`md:hidden flex flex-col absolute top-0 sm:w-1/2 w-full h-screen bg-white overflow-hidden z-30 transition-all ${
-            navBarShown ? "translate-x-0" : "translate-x-[-100%]"
+          className={`md:hidden flex flex-col fixed top-0 left-0 sm:w-1/2 w-full h-screen bg-white overflow-hidden z-30 transition-all duration-[0.6s] ${
+            navbarShown
+              ? "translate-x-0 opacity-100"
+              : "translate-x-[-100%] opacity-0"
           }`}
         >
           <div className="flex justify-between px-[5%] md:px-10 py-7 items-center gap-6 w-full">
@@ -39,6 +45,7 @@ const ToggleNavbar = () => {
               <Logo />
             </span>
             <HiOutlineShoppingCart
+              onClick={handleCartBtnClick}
               className={`${styles.icon} block sm:hidden`}
             />
           </div>
