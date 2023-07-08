@@ -10,8 +10,8 @@ const initialState = {
 
 const toggleBodyNoScroll = (action: boolean) => {
   action
-    ? document.body.classList.add("body-no-scroll")
-    : document.body.classList.remove("body-no-scroll");
+    ? document.body.classList?.add("body-no-scroll")
+    : document.body.classList?.remove("body-no-scroll");
 };
 
 const modalsSlice = createSlice({

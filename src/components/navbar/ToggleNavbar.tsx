@@ -30,7 +30,7 @@ const ToggleNavbar = () => {
     <>
       {createPortal(
         <div
-          className={`md:hidden flex flex-col fixed top-0 left-0 sm:w-1/2 w-full h-screen bg-white overflow-hidden z-30 transition-all duration-[0.6s] ${
+          className={`md:hidden flex flex-col fixed top-0 left-0 sm:w-1/2 w-full h-screen h-svh bg-white overflow-hidden z-30 transition-all duration-[0.6s] ${
             navbarShown
               ? "translate-x-0 opacity-100"
               : "translate-x-[-100%] opacity-0"

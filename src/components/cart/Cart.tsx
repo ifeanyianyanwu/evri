@@ -26,7 +26,7 @@ const Cart = () => {
     <>
       {createPortal(
         <div
-          className={`flex flex-col fixed top-0 right-0 sm:w-1/2 w-full h-screen bg-white overflow-hidden z-30 transition-all duration-[0.6s] ${
+          className={`flex flex-col fixed top-0 right-0 sm:w-1/2 w-full h-screen h-svh bg-white overflow-hidden z-30 transition-all duration-[0.6s] ${
             cartShown
               ? "translate-x-0 opacity-100"
               : "translate-x-full opacity-0"

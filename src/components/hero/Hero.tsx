@@ -67,12 +67,14 @@ const Hero = () => {
   ];
 
   return (
-    <div className="relative h-screen h-dvh w-full stack">
+    <div className="relative h-screen h-svh w-full stack">
       <Navbar />
       {contents.map((item, index) => (
         <div
           key={index}
-          className={`bg-cover bg-center h-screen w-full ${item.content.bg} ${
+          className={`bg-cover bg-center h-screen h-svh w-full ${
+            item.content.bg
+          } ${
             index === activeIndex ? "opacity-100" : "opacity-0"
           } opacity ease-in-out duration-[2s]`}
         >
