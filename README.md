@@ -39,6 +39,8 @@ The app has the following features:
 <!-- This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Technologies used include: -->
 
 - React
+- Tailwind CSS
+- TypeScript
 - React Router
 - React Toastify
 - Redux Toolkit
