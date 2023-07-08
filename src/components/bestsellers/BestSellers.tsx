@@ -47,7 +47,7 @@ const BestSellers = () => {
                 <img
                   src={item.image}
                   alt="img"
-                  className="max-w-[100%] aspect-square group-hover/card:scale-110 transition-all duration-[0.5s] ease-in-out"
+                  className="h-[100%] w-[100%] aspect-square group-hover/card:scale-110 transition-all duration-[0.5s] ease-in-out"
                 />
               </div>
               <div className="translate-y-[40%]  grid gap-2 p-2 group-hover/card:translate-y-0 transition-all duration-500">
