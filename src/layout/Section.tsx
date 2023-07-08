@@ -10,7 +10,7 @@ type IProps = {
 
 const Section = ({ id, children, background }: IProps) => {
   return (
-    <section id={id} className={`bg-${background || "none"} w-full py-20`}>
+    <section id={id} className={`bg-${background || "none"} w-full py-16`}>
       {children}
     </section>
   );

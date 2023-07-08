@@ -40,7 +40,7 @@ const Explore = () => {
 
   return (
     <Section id="explore">
-      <Container className="flex gap-10 flex-col md:flex-row">
+      <Container className="flex gap-10 flex-col md:flex-row mt-16">
         {contents.map((item, index) => (
           <div
             key={index}

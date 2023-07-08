@@ -25,7 +25,7 @@ const BestSellers = () => {
           ) : isLoading ? (
             <>Loading...</>
           ) : (
-            <div className="col-span-2 md:col-span-1 relative">
+            <div className="col-span-2 md:col-span-1 relative my-2">
               <h1 className="text-5xl font-extralight text-gray-700">
                 Explore Our Bestsellers
               </h1>
@@ -39,7 +39,7 @@ const BestSellers = () => {
           {bestSellers?.map((item, index) => (
             <div
               key={item.id}
-              className={`grid gap-4 overflow-hidden group/card cursor-pointer ${
+              className={`grid gap-4 overflow-hidden group/card cursor-pointer my-2 ${
                 index === bestSellers.length - 1 ? "md:grid hidden" : ""
               }`}
             >
