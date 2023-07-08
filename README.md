@@ -2,9 +2,7 @@
 
 ## Demo
 
-Coming soon...
-
-<!-- [View Live Site](https://finest-co-furniture.vercel.app/) -->
+[View Live Site](https://evri.netlify.app/)
 
 ## Evri | Your trusted one-stop store.
 
