@@ -45,7 +45,7 @@ const Hero = () => {
         title: "New Arrivals",
         text: "Create Your Own",
         link: "Explore Now",
-        bg: "one",
+        bg: "bg-hero-one",
       },
     },
     {
@@ -53,7 +53,7 @@ const Hero = () => {
         title: "Kitchen",
         text: "Stools with Style",
         link: "Explore Now",
-        bg: "two",
+        bg: "bg-hero-two",
       },
     },
     {
@@ -61,7 +61,7 @@ const Hero = () => {
         title: "Living Room",
         text: "New Arrivals",
         link: "Explore Now",
-        bg: "three",
+        bg: "bg-hero-three",
       },
     },
   ];
@@ -72,9 +72,7 @@ const Hero = () => {
       {contents.map((item, index) => (
         <div
           key={index}
-          className={`bg-cover bg-center h-screen w-full bg-hero-${
-            item.content.bg
-          } ${
+          className={`bg-cover bg-center h-screen w-full ${item.content.bg} ${
             index === activeIndex ? "opacity-100" : "opacity-0"
           } opacity ease-in-out duration-[2s]`}
         >
