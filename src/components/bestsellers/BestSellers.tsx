@@ -3,6 +3,8 @@ import Section from "../../layout/Section";
 import Container from "../../layout/Container";
 import { useGetProductsQuery } from "../../store/features/api/apiSlice";
 import { ProductList } from "../../types";
+import { HiHeart, HiOutlineEye, HiOutlineHeart } from "react-icons/hi";
+import { styles } from "../../styles";
 
 const BestSellers = () => {
   const { data, error, isLoading } = useGetProductsQuery(null);
@@ -53,7 +55,16 @@ const BestSellers = () => {
                 <p className="text-gray-600">
                   {currencyFormat.format(item.price)}
                 </p>
-                <div className="text-gray-600">gfgfdgffgghyhug</div>
+                <div className="flex justify-between items-center">
+                  <p className="text-gray-600 text-sm font-semibold">
+                    ADD TO CART
+                  </p>
+                  <div className="flex gap-2 items-center">
+                    <HiOutlineEye className={styles.icon} />
+                    <HiOutlineHeart className={styles.icon} />
+                    {/* <HiHeart className={styles.icon} /> */}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
