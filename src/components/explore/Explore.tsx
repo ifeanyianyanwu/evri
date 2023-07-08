@@ -54,7 +54,7 @@ const Explore = () => {
               className="w-full group-hover/item:scale-110 transition-all duration-[1s] ease-in-out"
             />
             <div className="absolute top-10 left-10 flex flex-col gap-4">
-              <h1 className="text-2xl font-semibold text-gray-700">
+              <h1 className="text-2xl  text-gray-700 font-base">
                 {item.content.title}
               </h1>
               <div
