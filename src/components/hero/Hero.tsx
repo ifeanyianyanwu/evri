@@ -5,14 +5,17 @@ import ToggleNavbar from "../navbar/ToggleNavbar";
 import { CgArrowLongRight } from "react-icons/cg";
 import { styles } from "../../styles";
 
-type Content = {
-  [key: string]: { title: string; text: string; button: string };
-};
+type Contents = {
+  content: {
+    title: string;
+    text: string;
+    link: string;
+    bg: string;
+  };
+}[];
 
 const Hero = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
-
-  const children = ["one", "two", "three"];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -28,40 +31,51 @@ const Hero = () => {
 
   const updateIndex = (newIndex: number) => {
     if (newIndex < 0) {
-      newIndex = children.length - 1;
-    } else if (newIndex >= children.length) {
+      newIndex = contents.length - 1;
+    } else if (newIndex >= contents.length) {
       newIndex = 0;
     }
 
     setActiveIndex(newIndex);
   };
 
-  const content: Content = {
-    one: {
-      title: "New Arrivals",
-      text: "Create Your Own",
-      button: "Explore Now",
+  const contents: Contents = [
+    {
+      content: {
+        title: "New Arrivals",
+        text: "Create Your Own",
+        link: "Explore Now",
+        bg: "one",
+      },
     },
-    two: {
-      title: "Kitchen",
-      text: "Stools with Style",
-      button: "Explore Now",
+    {
+      content: {
+        title: "Kitchen",
+        text: "Stools with Style",
+        link: "Explore Now",
+        bg: "two",
+      },
     },
-    three: {
-      title: "Living Room",
-      text: "New Arrivals",
-      button: "Explore Now",
+    {
+      content: {
+        title: "Living Room",
+        text: "New Arrivals",
+        link: "Explore Now",
+        bg: "three",
+      },
     },
-  };
+  ];
 
   return (
     <div className="relative h-screen w-full stack">
       <Navbar />
       <ToggleNavbar />
-      {children.map((item, index) => (
+      {contents.map((item, index) => (
         <div
           key={index}
-          className={`bg-cover bg-center h-screen w-full bg-hero-${item} ${
+          className={`bg-cover bg-center h-screen w-full bg-hero-${
+            item.content.bg
+          } ${
             index === activeIndex ? "opacity-100" : "opacity-0"
           } opacity ease-in-out duration-[2s]`}
         >
@@ -82,7 +96,7 @@ const Hero = () => {
                     : "opacity-0 translate-x-[15rem]"
                 } fader ease-out duration-[1s]`}
               >
-                {content[item].title}
+                {item.content.title}
               </h1>
               <h4
                 className={`text-5xl md:text-6xl ${
@@ -91,26 +105,26 @@ const Hero = () => {
                     : "opacity-0 translate-x-[15rem]"
                 } fader ease-out duration-[1s] delay-100`}
               >
-                {content[item].text}
+                {item.content.text}
               </h4>
               <div
-                className={`relative w-fit flex flex-col pb-3 group cursor-pointer z-[1] ${
+                className={`relative w-fit flex flex-col pb-3 group/link cursor-pointer z-[1] ${
                   index === activeIndex
                     ? "opacity-100 translate-x-0"
                     : "opacity-0 translate-x-[15rem]"
                 } fader ease-out duration-[1s] delay-100`}
               >
                 <Link to="" className="text-sm">
-                  {content[item].button}
+                  {item.content.link}
                 </Link>
-                <span className="absolute w-1/5 h-0.5 bg-black bottom-0 group-hover:w-full transition-all duration-[0.5s] ease-in-out"></span>
+                <span className="absolute w-1/5 h-0.5 bg-black bottom-0 group-hover/link:w-full transition-all duration-[0.5s] ease-in-out"></span>
               </div>
             </div>
           </div>
         </div>
       ))}
       <div className="absolute bottom-10 left-10 mx-0 md:left-20 md:mx-6 flex gap-4">
-        {children.map((item, index) => (
+        {contents.map((item, index) => (
           <div
             key={index}
             onClick={() => setActiveIndex(index)}
@@ -132,11 +146,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-// ${
-//   item === "one"
-//     ? "bg-hero-one"
-//     : item === "two"
-//     ? "bg-hero-two"
-//     : "bg-hero-three"
-// }
