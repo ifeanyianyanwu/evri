@@ -17,25 +17,31 @@ const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    addItem: (state, action: PayloadAction<Product>) => {
-      const itemToAdd = action.payload;
+    addItem: (
+      state,
+      action: PayloadAction<{ product: Product; quantity: number }>
+    ) => {
+      const itemToAdd = action.payload.product;
+      const quantityOfItemToAdd = action.payload.quantity;
+
       const itemToAddExists = state.cartItems.find(
         (item) => item.id === itemToAdd.id
       );
-      state.numberOfItemsInCart++;
+      state.numberOfItemsInCart += quantityOfItemToAdd;
 
       if (!itemToAddExists) {
         state.cartItems.unshift({
           id: itemToAdd.id,
           name: itemToAdd.name,
           price: itemToAdd.price,
-          quantity: 1,
+          quantity: quantityOfItemToAdd,
           totalPrice: itemToAdd.price,
           image: itemToAdd.image,
         });
       } else {
-        itemToAddExists.quantity++;
-        itemToAddExists.totalPrice += itemToAddExists.price;
+        itemToAddExists.quantity += quantityOfItemToAdd;
+        itemToAddExists.totalPrice +=
+          itemToAddExists.price * quantityOfItemToAdd;
       }
     },
     increase: (state, action: PayloadAction) => {},

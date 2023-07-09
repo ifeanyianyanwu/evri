@@ -24,7 +24,7 @@ const Product = ({ product, index, arrLength }: IProps) => {
   });
 
   const handleAddToCartBtnClick = () => {
-    dispatch(addItem(product));
+    dispatch(addItem({ product: product, quantity: 1 }));
   };
 
   return (
