@@ -72,7 +72,11 @@ const cartSlice = createSlice({
           productToDecreaseQuantity!.price;
       }
     },
-    calculateTotal: (state) => {},
+    calculateTotal: (state) => {
+      let total: number = 0;
+      state.cartItems.forEach((item) => (total += item.totalPrice));
+      state.total = total;
+    },
   },
 });
 

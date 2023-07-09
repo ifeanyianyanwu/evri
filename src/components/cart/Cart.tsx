@@ -5,6 +5,8 @@ import { HiX } from "react-icons/hi";
 import { styles } from "../../styles";
 import EmptyBag from "../../assets/EmptyBag";
 import CartItem from "./CartItem";
+import { useEffect } from "react";
+import { calculateTotal } from "../../store/features/cart/cartSlice";
 
 const Cart = () => {
   const dispatch = useAppDispatch();
@@ -14,10 +16,15 @@ const Cart = () => {
     (state) => state.cart.numberOfItemsInCart
   );
   const cartItems = useAppSelector((state) => state.cart.cartItems);
+  const totalPrice = useAppSelector((state) => state.cart.total);
 
   const handleCloseBtnClick = () => {
     dispatch(showCart(false));
   };
+
+  useEffect(() => {
+    dispatch(calculateTotal());
+  }, [cartItems]);
 
   const cart: Element = document.getElementById("cart") as Element;
 
@@ -47,9 +54,12 @@ const Cart = () => {
                   <p className="text-gray-400">No Product in the Cart</p>
                 </div>
               ) : (
-                cartItems.map((item) => (
-                  <CartItem key={item.id} product={item} />
-                ))
+                <div>
+                  {cartItems.map((item) => (
+                    <CartItem key={item.id} product={item} />
+                  ))}
+                  <p>{totalPrice}</p>
+                </div>
               )}
             </div>
           </div>

@@ -16,9 +16,10 @@ const App = () => {
       </Routes>
       <ToastContainer
         autoClose={2000}
-        limit={3}
+        limit={2}
         newestOnTop={true}
         closeOnClick
+        hideProgressBar
       />
     </div>
   );
