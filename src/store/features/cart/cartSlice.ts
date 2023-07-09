@@ -72,6 +72,16 @@ const cartSlice = createSlice({
           productToDecreaseQuantity!.price;
       }
     },
+    remove: (state, action: PayloadAction<string>) => {
+      const productToRemove = state.cartItems.find(
+        (item) => item.id === action.payload
+      );
+      state.numberOfItemsInCart -= productToRemove!.quantity;
+      state.cartItems = state.cartItems.filter(
+        (item) => item.id !== action.payload
+      );
+      toast.success("Item removed from cart");
+    },
     calculateTotal: (state) => {
       let total: number = 0;
       state.cartItems.forEach((item) => (total += item.totalPrice));
@@ -80,6 +90,6 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addItem, increase, decrease, calculateTotal } =
+export const { addItem, increase, decrease, remove, calculateTotal } =
   cartSlice.actions;
 export default cartSlice.reducer;

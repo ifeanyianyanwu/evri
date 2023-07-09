@@ -30,7 +30,7 @@ const Product = ({ product, index, arrLength }: IProps) => {
   return (
     <div
       key={product.id}
-      className={`grid overflow-hidden group/card cursor-pointer my-2 hover:shadow-normal ${
+      className={`grid overflow-hidden group/card  my-2 hover:shadow-normal ${
         arrLength && index === (arrLength as number) - 1 ? "md:grid hidden" : ""
       }`}
     >
@@ -47,12 +47,12 @@ const Product = ({ product, index, arrLength }: IProps) => {
         <p className="text-gray-600">{currencyFormat.format(product.price)}</p>
         <div className="flex justify-between items-center">
           <p
-            className="text-gray-600 text-sm font-semibold"
+            className="text-gray-600 text-sm font-semibold cursor-pointer"
             onClick={handleAddToCartBtnClick}
           >
             ADD TO CART
           </p>
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-4 items-center">
             <HiOutlineEye className={styles.icon} />
             <HiOutlineHeart className={styles.icon} />
             {/* <HiHeart className={styles.icon} />  sm:translate-y-[40px] */}

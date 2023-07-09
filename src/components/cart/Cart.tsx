@@ -18,6 +18,11 @@ const Cart = () => {
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const totalPrice = useAppSelector((state) => state.cart.total);
 
+  const currencyFormat = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
   const handleCloseBtnClick = () => {
     dispatch(showCart(false));
   };
@@ -33,13 +38,13 @@ const Cart = () => {
       {createPortal(
         <>
           <div
-            className={`flex flex-col fixed top-0 right-0 sm:w-1/2 w-full h-screen h-svh bg-white overflow-hidden z-30 transition-all duration-[0.6s] ${
+            className={`flex flex-col fixed top-0 right-0 w-full sm:w-3/4 lg:w-1/2 max-w-[640px] h-screen h-svh bg-white overflow-hidden z-30 transition-all duration-[0.6s] ${
               cartShown
                 ? "translate-x-0 opacity-100"
                 : "translate-x-full opacity-0"
             }`}
           >
-            <div className="flex justify-between px-[5%] md:px-10 py-7 items-center gap-6 w-full">
+            <div className="flex justify-between px-[5%] md:px-10 py-12 items-center gap-6 w-full">
               <p>Cart ({numberOfItemsInCart})</p>
               <HiX
                 className={`${styles.icon} sm:ml-auto ml-0`}
@@ -47,21 +52,28 @@ const Cart = () => {
               />
             </div>
 
-            <div className="flex gap-10 px-[5%] md:px-10 flex-col overflow-auto bg-white flex-grow">
+            <div className="flex gap-10 px-[5%] md:px-10 flex-col overflow-auto bg-white flex-grow ">
               {numberOfItemsInCart === 0 ? (
                 <div className="grid gap-6 place-content-center w-full h-full">
                   <EmptyBag />
                   <p className="text-gray-400">No Product in the Cart</p>
                 </div>
               ) : (
-                <div>
+                <div className="flex gap-8 flex-col">
                   {cartItems.map((item) => (
                     <CartItem key={item.id} product={item} />
                   ))}
-                  <p>{totalPrice}</p>
                 </div>
               )}
             </div>
+            {numberOfItemsInCart !== 0 && (
+              <div className="px-10 py-6 flex justify-between items-center gap-6 sm:flex-row flex-col">
+                <p>Subtotal: {currencyFormat.format(totalPrice)}</p>
+                <button className="border-solid border-black border px-6 py-3 hover:bg-gray-800 hover:text-white transition-all duration-300 sm:w-fit w-full">
+                  VIEW CART
+                </button>
+              </div>
+            )}
           </div>
           {cartShown && (
             <div className="fixed inset-0 bg-slate-900 opacity-70 z-20 sm:block hidden"></div>
