@@ -30,6 +30,9 @@ export default {
         fader: "transform, opacity",
         transform: "transform",
       },
+      boxShadow: {
+        normal: "0px 5px 30px -5px rgba(0, 0, 0, 0.15)",
+      },
     },
   },
   plugins: [],

@@ -39,7 +39,7 @@ const BestSellers = () => {
           {bestSellers?.map((item, index) => (
             <div
               key={item.id}
-              className={`grid gap-4 overflow-hidden group/card cursor-pointer my-2 ${
+              className={`grid overflow-hidden group/card cursor-pointer my-2 hover:shadow-normal ${
                 index === bestSellers.length - 1 ? "md:grid hidden" : ""
               }`}
             >
@@ -51,7 +51,7 @@ const BestSellers = () => {
                   className="h-[100%] w-[100%] aspect-square group-hover/card:scale-110 transition-all duration-[0.5s] ease-in-out"
                 />
               </div>
-              <div className="translate-y-[40%]  grid gap-2 p-2 group-hover/card:translate-y-0 transition-all duration-500">
+              <div className="translate-y-[40%] grid gap-2 p-4 group-hover/card:translate-y-0 transition-all duration-500">
                 <p className="capitalize text-gray-600">{item.name}</p>
                 <p className="text-gray-600">
                   {currencyFormat.format(item.price)}
