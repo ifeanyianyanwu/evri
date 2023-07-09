@@ -10,21 +10,22 @@ export default {
         "hero-one": "url('/src/assets/Home-Background-One.webp')",
         "hero-two": "url('/src/assets/Home-Background-Two.webp')",
         "hero-three": "url('/src/assets/Home-Background-Three.webp')",
-        brands: "url('/src/assets/brands-bg.webp')",
       },
-      // animation: {
-      //   wobble: "wobble 1.5s ease-in-out infinite",
-      // },
-      // keyframes: {
-      //   wobble: {
-      //     "0%": {
-      //       transform: "translateX(0)",
-      //     },
-      //     "100%": {
-      //       transform: "translateX(2rem)",
-      //     },
-      //   },
-      // },
+      animation: {
+        slideup: "slideup 0.8s ease-in-out",
+      },
+      keyframes: {
+        slideup: {
+          "0%": {
+            transform: "translateY(30px)",
+            opacity: "0",
+          },
+          "100%": {
+            transform: "translateY(0)",
+            opacity: "1",
+          },
+        },
+      },
       transitionProperty: {
         fader: "transform, opacity",
         transform: "transform",
