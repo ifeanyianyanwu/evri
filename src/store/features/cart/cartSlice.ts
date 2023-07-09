@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartItem, Product } from "../../../types";
+import { toast } from "react-toastify";
 
 type SliceState = {
   cartItems: CartItem[];
@@ -29,6 +30,7 @@ const cartSlice = createSlice({
       );
       state.numberOfItemsInCart += quantityOfItemToAdd;
 
+      toast.success("Item added to cart");
       if (!itemToAddExists) {
         state.cartItems.unshift({
           id: itemToAdd.id,
@@ -44,8 +46,32 @@ const cartSlice = createSlice({
           itemToAddExists.price * quantityOfItemToAdd;
       }
     },
-    increase: (state, action: PayloadAction) => {},
-    decrease: (state, action: PayloadAction) => {},
+
+    increase: (state, action: PayloadAction<string>) => {
+      state.numberOfItemsInCart++;
+      const productToIncreaseQuantity = state.cartItems.find(
+        (item) => item.id === action.payload
+      );
+      productToIncreaseQuantity!.quantity++;
+      productToIncreaseQuantity!.totalPrice += productToIncreaseQuantity!.price;
+    },
+
+    decrease: (state, action: PayloadAction<string>) => {
+      state.numberOfItemsInCart--;
+      const productToDecreaseQuantity = state.cartItems.find(
+        (item) => item.id === action.payload
+      );
+      if (productToDecreaseQuantity?.quantity === 1) {
+        state.cartItems = state.cartItems.filter(
+          (item) => item.id !== action.payload
+        );
+        toast.success("Item removed from cart");
+      } else {
+        productToDecreaseQuantity!.quantity--;
+        productToDecreaseQuantity!.totalPrice -=
+          productToDecreaseQuantity!.price;
+      }
+    },
     calculateTotal: (state) => {},
   },
 });
