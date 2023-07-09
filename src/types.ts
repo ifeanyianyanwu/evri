@@ -12,3 +12,12 @@ export type Product = {
 };
 
 export type ProductList = Product[];
+
+export type CartItem = {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  totalPrice: number;
+  image: string;
+};

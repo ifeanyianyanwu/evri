@@ -7,19 +7,25 @@ import {
 import Logo from "../../assets/Logo";
 import { styles } from "../../styles";
 import { Link } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { showCart, showNavbar } from "../../store/features/modals/modalsSlice";
+import { useAppDispatch } from "../../store/hooks";
+import {
+  showCart,
+  showNavbar,
+  showWishlist,
+} from "../../store/features/modals/modalsSlice";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
 
-  const navbarShown = useAppSelector((state) => state.modals.navbarShown);
-
   const handleMenuClick = () => {
-    dispatch(showNavbar(!navbarShown));
+    dispatch(showNavbar(true));
   };
   const handleCartBtnClick = () => {
     dispatch(showCart(true));
+  };
+
+  const handleWishlistBtnClick = () => {
+    dispatch(showWishlist(true));
   };
 
   return (
@@ -43,7 +49,10 @@ const Navbar = () => {
       <div className="flex gap-6 items-center md:ml-auto">
         <span className="hidden md:flex gap-6 items-center">
           <HiOutlineSearch className={styles.icon} />
-          <HiOutlineHeart className={styles.icon} />
+          <HiOutlineHeart
+            className={styles.icon}
+            onClick={handleWishlistBtnClick}
+          />
         </span>
         <HiOutlineShoppingCart
           className={styles.icon}

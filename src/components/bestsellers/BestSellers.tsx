@@ -1,20 +1,13 @@
-import React, { useEffect } from "react";
 import Section from "../../layout/Section";
 import Container from "../../layout/Container";
 import { useGetProductsQuery } from "../../store/features/api/apiSlice";
 import { ProductList } from "../../types";
-import { HiHeart, HiOutlineEye, HiOutlineHeart } from "react-icons/hi";
-import { styles } from "../../styles";
+import Product from "../product/Product";
 
 const BestSellers = () => {
   const { data, error, isLoading } = useGetProductsQuery(null);
 
   const bestSellers: ProductList = data?.slice(0, 7);
-
-  const currencyFormat = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
 
   return (
     <Section>
@@ -37,37 +30,12 @@ const BestSellers = () => {
             </div>
           )}
           {bestSellers?.map((item, index) => (
-            <div
+            <Product
               key={item.id}
-              className={`grid overflow-hidden group/card cursor-pointer my-2 hover:shadow-normal ${
-                index === bestSellers.length - 1 ? "md:grid hidden" : ""
-              }`}
-            >
-              <div className="overflow-hidden">
-                <img
-                  loading="lazy"
-                  src={item.image}
-                  alt="img"
-                  className="h-[100%] w-[100%] aspect-square group-hover/card:scale-110 transition-all duration-[0.5s] ease-in-out"
-                />
-              </div>
-              <div className="translate-y-[40%] grid gap-2 p-4 group-hover/card:translate-y-0 transition-all duration-500">
-                <p className="capitalize text-gray-600">{item.name}</p>
-                <p className="text-gray-600">
-                  {currencyFormat.format(item.price)}
-                </p>
-                <div className="flex justify-between items-center">
-                  <p className="text-gray-600 text-sm font-semibold">
-                    ADD TO CART
-                  </p>
-                  <div className="flex gap-2 items-center">
-                    <HiOutlineEye className={styles.icon} />
-                    <HiOutlineHeart className={styles.icon} />
-                    {/* <HiHeart className={styles.icon} />  sm:translate-y-[40px] */}
-                  </div>
-                </div>
-              </div>
-            </div>
+              product={item}
+              index={index}
+              arrLength={bestSellers.length}
+            />
           ))}
         </div>
         <div className="grid place-content-center mt-14">

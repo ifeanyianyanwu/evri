@@ -2,13 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type Modal = boolean;
 
-type SliceState = {
-  navbarShown: boolean;
-  cartShown: boolean;
-  wishlistShown: boolean;
-};
-
-const initialState: SliceState = {
+const initialState = {
   navbarShown: false,
   cartShown: false,
   wishlistShown: false,
@@ -21,7 +15,7 @@ const toggleBodyNoScroll = (action: boolean) => {
 };
 
 const modalsSlice = createSlice({
-  name: "customer",
+  name: "modals",
   initialState,
   reducers: {
     showNavbar: (state, action: PayloadAction<Modal>) => {
