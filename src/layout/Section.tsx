@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-type BackGround = "none" | "brands";
+type BackGround = "none" | "cream";
 
 type IProps = {
   id?: string;
@@ -10,7 +10,12 @@ type IProps = {
 
 const Section = ({ id, children, background }: IProps) => {
   return (
-    <section id={id} className={`bg-${background || "none"} w-full py-16`}>
+    <section
+      id={id}
+      className={`${
+        background === "cream" ? "bg-[#F5EFEB]" : "bg-none"
+      } w-full py-16`}
+    >
       {children}
     </section>
   );
