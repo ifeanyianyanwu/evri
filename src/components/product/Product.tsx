@@ -1,22 +1,27 @@
-import { HiOutlineEye, HiOutlineHeart } from "react-icons/hi";
+import { HiHeart, HiOutlineHeart } from "react-icons/hi";
 import { Product as ProductType } from "../../types";
 import { styles } from "../../styles";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { addItem } from "../../store/features/cart/cartSlice";
+import { addToCart } from "../../store/features/cart/cartSlice";
+import { addToWishlist } from "../../store/features/wishlist/wishlistSlice";
 
 type IProps = { product: ProductType; index: number; arrLength?: number };
 
 const Product = ({ product, index, arrLength }: IProps) => {
-  //   const [isInCart, setIsInCart] = useState<boolean>(false);
+  const [isInWishlist, setIsInWishlist] = useState<boolean>(false);
   const dispatch = useAppDispatch();
-  const cartItems = useAppSelector((state) => state.cart.cartItems);
+  const wishlistItems = useAppSelector((state) => state.wishlist.wishlistItems);
 
   //check if product is already in wishlist
-  //   useEffect(() => {
-  //     const item = wishListItems.find((item) => item.id === product.id);
-  //     if (item) setIsInCart(true);
-  //   }, [wishListItems, product]);
+  useEffect(() => {
+    const item = wishlistItems.find((item) => item.id === product.id);
+    if (item) {
+      setIsInWishlist(true);
+    } else {
+      setIsInWishlist(false);
+    }
+  }, [wishlistItems, product]);
 
   const currencyFormat = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -24,8 +29,18 @@ const Product = ({ product, index, arrLength }: IProps) => {
   });
 
   const handleAddToCartBtnClick = () => {
-    dispatch(addItem({ product: product, quantity: 1 }));
+    dispatch(addToCart({ product: product, quantity: 1 }));
   };
+
+  const handleAddToWishlistBtnClick = () => {
+    dispatch(addToWishlist(product));
+  };
+
+  const heartIcon = isInWishlist ? (
+    <HiHeart className={`${styles.icon}`} />
+  ) : (
+    <HiOutlineHeart className={`${styles.icon}`} />
+  );
 
   return (
     <div
@@ -52,8 +67,9 @@ const Product = ({ product, index, arrLength }: IProps) => {
           >
             ADD TO CART
           </p>
-          <HiOutlineHeart className={`${styles.icon} mx-2`} />
-          {/* <HiHeart className={styles.icon} />  sm:translate-y-[40px] */}
+          <div className="mx-2" onClick={handleAddToWishlistBtnClick}>
+            {heartIcon}
+          </div>
         </div>
       </div>
     </div>
