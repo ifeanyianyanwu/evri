@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Shop from "./pages/Shop";
-import ProductInfo from "./components/product/ProductInfo";
+import ProductInfo from "./pages/ProductInfo";
 
 const App = () => {
   return (
