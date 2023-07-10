@@ -79,7 +79,10 @@ const ToggleNavbar = () => {
             </div>
           </div>
           {navbarShown && (
-            <div className="fixed inset-0 bg-slate-900 opacity-70 z-20 sm:block md:hidden hidden"></div>
+            <div
+              className="fixed inset-0 bg-slate-900 opacity-70 z-20 sm:block md:hidden hidden"
+              onClick={handleCloseBtnClick}
+            ></div>
           )}
         </>,
         nav

@@ -7,6 +7,7 @@ import EmptyBag from "../../assets/EmptyBag";
 import CartItem from "./CartItem";
 import { useEffect } from "react";
 import { calculateTotal } from "../../store/features/cart/cartSlice";
+import Button from "../ui/button/Button";
 
 const Cart = () => {
   const dispatch = useAppDispatch();
@@ -69,14 +70,15 @@ const Cart = () => {
             {numberOfItemsInCart !== 0 && (
               <div className="px-10 py-6 flex justify-between items-center gap-6 sm:flex-row flex-col">
                 <p>Subtotal: {currencyFormat.format(totalPrice)}</p>
-                <button className="border-solid border-black border px-6 py-3 hover:bg-gray-800 hover:text-white transition-all duration-300 sm:w-fit w-full">
-                  VIEW CART
-                </button>
+                <Button>VIEW CART</Button>
               </div>
             )}
           </div>
           {cartShown && (
-            <div className="fixed inset-0 bg-slate-900 opacity-70 z-20 sm:block hidden"></div>
+            <div
+              className="fixed inset-0 bg-slate-900 opacity-70 z-20 sm:block hidden"
+              onClick={handleCloseBtnClick}
+            ></div>
           )}
         </>,
         cart

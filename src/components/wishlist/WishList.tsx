@@ -42,7 +42,10 @@ const WishList = () => {
             <div className="flex gap-10 px-[5%] md:px-10 flex-col overflow-auto bg-red-800 flex-grow"></div>
           </div>
           {wishlistShown && (
-            <div className="fixed inset-0 bg-slate-900 opacity-70 z-20 sm:block hidden"></div>
+            <div
+              className="fixed inset-0 bg-slate-900 opacity-70 z-20 sm:block hidden"
+              onClick={handleCloseBtnClick}
+            ></div>
           )}
         </>,
         wishlist

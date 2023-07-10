@@ -3,6 +3,7 @@ import Container from "../../layout/Container";
 import { useGetProductsQuery } from "../../store/features/api/apiSlice";
 import { ProductList } from "../../types";
 import Product from "../product/Product";
+import Button from "../ui/button/Button";
 
 const BestSellers = () => {
   const { data, error, isLoading } = useGetProductsQuery(null);
@@ -12,7 +13,7 @@ const BestSellers = () => {
   return (
     <Section>
       <Container>
-        <div className="grid grid-cols-2 lg:grid-cols-4  gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {error ? (
             <>An error occured</>
           ) : isLoading ? (
@@ -38,10 +39,8 @@ const BestSellers = () => {
             />
           ))}
         </div>
-        <div className="grid place-content-center mt-14">
-          <button className="border-solid border-black border px-6 py-3 hover:bg-gray-800 hover:text-white transition-all duration-300">
-            SEE ALL PRODUCTS
-          </button>
+        <div className="flex justify-center mt-14">
+          <Button>SEE ALL PRODUCTS</Button>
         </div>
       </Container>
     </Section>
