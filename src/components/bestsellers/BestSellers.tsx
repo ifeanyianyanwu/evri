@@ -4,8 +4,10 @@ import { useGetProductsQuery } from "../../store/features/api/apiSlice";
 import { ProductList } from "../../types";
 import Product from "../product/Product";
 import Button from "../ui/button/Button";
+import { useNavigate } from "react-router-dom";
 
 const BestSellers = () => {
+  const navigate = useNavigate();
   const { data, error, isLoading } = useGetProductsQuery(null);
 
   const bestSellers: ProductList = data?.slice(0, 7);
@@ -40,7 +42,7 @@ const BestSellers = () => {
           ))}
         </div>
         <div className="flex justify-center mt-14">
-          <Button>SEE ALL PRODUCTS</Button>
+          <Button onClick={() => navigate("/shop")}>SEE ALL PRODUCTS</Button>
         </div>
       </Container>
     </Section>

@@ -1,6 +1,6 @@
 import Navbar from "../navbar/Navbar";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ToggleNavbar from "../navbar/ToggleNavbar";
 import { CgArrowLongRight } from "react-icons/cg";
 import { styles } from "../../styles";
@@ -113,7 +113,7 @@ const Hero = () => {
                     : "opacity-0 translate-x-[15rem]"
                 } fader ease-out duration-[1s] delay-100`}
               >
-                <Link to="" className="text-sm text-gray-600">
+                <Link to="/shop" className="text-sm text-gray-600">
                   {item.content.link}
                 </Link>
                 <span className="absolute w-1/5 h-0.5 bg-gray-600 bottom-0 group-hover/link:w-full transition-all duration-[0.5s] ease-in-out"></span>

@@ -6,7 +6,7 @@ import {
 } from "react-icons/hi";
 import Logo from "../../assets/Logo";
 import { styles } from "../../styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../store/hooks";
 import {
   showCart,
@@ -16,6 +16,7 @@ import {
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleMenuClick = () => {
     dispatch(showNavbar(true));
@@ -34,14 +35,17 @@ const Navbar = () => {
         className={`${styles.icon} md:hidden block`}
         onClick={handleMenuClick}
       />
-      <span className="w-[80px] h-[50px] mx-auto md:mx-0">
+      <span
+        className="w-[80px] h-[50px] mx-auto md:mx-0 cursor-pointer"
+        onClick={() => navigate("/")}
+      >
         <Logo />
       </span>
       <span className="hidden md:flex gap-6 items-center">
-        <Link to="" className="text-gray-700">
+        <Link to="/" className="text-gray-700">
           Home
         </Link>
-        <Link to="" className="text-gray-700">
+        <Link to="/shop" className="text-gray-700">
           Shop
         </Link>
       </span>

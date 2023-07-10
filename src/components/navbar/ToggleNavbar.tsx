@@ -60,8 +60,12 @@ const ToggleNavbar = () => {
             </div>
 
             <div className="flex gap-10 px-[5%] md:px-10 flex-col">
-              <Link to="">Home</Link>
-              <Link to="">Shop</Link>
+              <Link onClick={handleCloseBtnClick} to="/">
+                Home
+              </Link>
+              <Link onClick={handleCloseBtnClick} to="/shop">
+                Shop
+              </Link>
               <span className="flex justify-between">
                 <p>Search</p>
                 <HiOutlineSearch className={styles.icon} />

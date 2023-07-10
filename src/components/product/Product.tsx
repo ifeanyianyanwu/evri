@@ -5,12 +5,14 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { addToCart } from "../../store/features/cart/cartSlice";
 import { addToWishlist } from "../../store/features/wishlist/wishlistSlice";
+import { useNavigate } from "react-router-dom";
 
 type IProps = { product: ProductType; index: number; arrLength?: number };
 
 const Product = ({ product, index, arrLength }: IProps) => {
   const [isInWishlist, setIsInWishlist] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const wishlistItems = useAppSelector((state) => state.wishlist.wishlistItems);
 
   //check if product is already in wishlist
@@ -51,6 +53,7 @@ const Product = ({ product, index, arrLength }: IProps) => {
     >
       <div className="overflow-hidden">
         <img
+          onClick={() => navigate(`/shop/${product.id}`)}
           loading="lazy"
           src={product.image}
           alt="img"

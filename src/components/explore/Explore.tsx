@@ -60,7 +60,7 @@ const Explore = () => {
               <div
                 className={`relative w-fit flex flex-col pb-3 group cursor-pointer fader ease-out duration-[1s] delay-100`}
               >
-                <Link to="" className="text-sm text-gray-600">
+                <Link to="/shop" className="text-sm text-gray-600">
                   {item.content.link}
                 </Link>
                 <span className="absolute w-1/5 h-0.5 bg-gray-600 bottom-0 group-hover:w-full transition-all duration-[0.5s] ease-in-out"></span>
