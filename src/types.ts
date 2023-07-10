@@ -21,3 +21,10 @@ export type CartItem = {
   totalPrice: number;
   image: string;
 };
+
+export type WishlistItem = {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+};

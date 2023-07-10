@@ -8,7 +8,7 @@ import { useAppDispatch } from "../../store/hooks";
 import {
   decrease,
   increase,
-  remove,
+  removeFromCart,
 } from "../../store/features/cart/cartSlice";
 
 type IProps = { product: CartItemType };
@@ -30,7 +30,7 @@ const CartItem = ({ product }: IProps) => {
   };
 
   const handleRemoveBtnClick = () => {
-    dispatch(remove(product.id));
+    dispatch(removeFromCart(product.id));
   };
   return (
     <div className="flex justify-between gap-4">
