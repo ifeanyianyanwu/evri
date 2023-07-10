@@ -2,6 +2,8 @@
 
 ## Demo
 
+Work in progress
+
 [View Live Site](https://evri.netlify.app/)
 
 ## Evri | Your trusted one-stop store.
