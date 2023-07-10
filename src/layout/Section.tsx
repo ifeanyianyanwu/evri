@@ -14,7 +14,7 @@ const Section = ({ id, children, background }: IProps) => {
       id={id}
       className={`${
         background === "cream" ? "bg-[#F5EFEB]" : "bg-none"
-      } w-full py-16`}
+      } w-full sm:py-16 py-11`}
     >
       {children}
     </section>

@@ -44,7 +44,7 @@ const Cart = () => {
                 : "translate-x-full opacity-0"
             }`}
           >
-            <div className="flex justify-between px-[5%] md:px-10 py-12 items-center gap-6 w-full">
+            <div className="flex justify-between px-[5%] md:px-10 py-8 sm:py-12 items-center gap-6 w-full">
               <p>Cart ({numberOfItemsInCart})</p>
               <HiX
                 className={`${styles.icon} sm:ml-auto ml-0`}

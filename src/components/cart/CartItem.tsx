@@ -46,7 +46,7 @@ const CartItem = ({ product }: IProps) => {
           <p className="text-gray-600 capitalize font-semibold">
             {product.name}
           </p>
-          <span className="flex gap-2 items-center border-solid border-black border p-1 w-fit">
+          <span className="flex gap-3 items-center border-solid border-black border p-1 w-fit">
             <AiOutlineMinus
               onClick={handleDecreaseBtnClick}
               className="cursor-pointer"
@@ -62,7 +62,8 @@ const CartItem = ({ product }: IProps) => {
 
       <div className="flex flex-col gap-4 justify-center items-end">
         <AiOutlineCloseCircle
-          className="cursor-pointer"
+          size={22}
+          className="cursor-pointer text-gray-400 hover:text-black"
           onClick={handleRemoveBtnClick}
         />
         <p className="text-gray-600">{currencyFormat.format(product.price)}</p>

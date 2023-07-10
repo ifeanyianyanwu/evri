@@ -39,7 +39,7 @@ const Product = ({ product, index, arrLength }: IProps) => {
           loading="lazy"
           src={product.image}
           alt="img"
-          className="h-[100%] w-[100%] aspect-square group-hover/card:scale-110 transition-all duration-[0.5s] ease-in-out"
+          className="h-[100%] w-[100%] aspect-square group-hover/card:scale-110 transition-all duration-[0.5s] ease-in-out cursor-pointer"
         />
       </div>
       <div className="translate-y-[40%] grid gap-2 p-4 group-hover/card:translate-y-0 transition-all duration-500">
@@ -52,11 +52,8 @@ const Product = ({ product, index, arrLength }: IProps) => {
           >
             ADD TO CART
           </p>
-          <div className="flex gap-4 items-center">
-            <HiOutlineEye className={styles.icon} />
-            <HiOutlineHeart className={styles.icon} />
-            {/* <HiHeart className={styles.icon} />  sm:translate-y-[40px] */}
-          </div>
+          <HiOutlineHeart className={`${styles.icon} mx-2`} />
+          {/* <HiHeart className={styles.icon} />  sm:translate-y-[40px] */}
         </div>
       </div>
     </div>
