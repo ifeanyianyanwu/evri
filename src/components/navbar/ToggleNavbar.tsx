@@ -14,6 +14,8 @@ import {
 import { styles } from "../../styles";
 import Logo from "../../assets/Logo";
 import { Link } from "react-router-dom";
+import CartIcon from "../cart/CartIcon";
+import WishlistIcon from "../wishlist/WishlistIcon";
 
 const ToggleNavbar = () => {
   const dispatch = useAppDispatch();
@@ -53,10 +55,7 @@ const ToggleNavbar = () => {
               <span className="w-[80px] h-[50px] mx-auto block sm:hidden">
                 <Logo />
               </span>
-              <HiOutlineShoppingCart
-                onClick={handleCartBtnClick}
-                className={`${styles.icon} block sm:hidden`}
-              />
+              <CartIcon onClick={handleCartBtnClick} />
             </div>
 
             <div className="flex gap-10 px-[5%] md:px-10 flex-col">
@@ -66,16 +65,12 @@ const ToggleNavbar = () => {
               <Link onClick={handleCloseBtnClick} to="/shop">
                 Shop
               </Link>
-              <span className="flex justify-between">
-                <p>Search</p>
-                <HiOutlineSearch className={styles.icon} />
-              </span>
               <span
                 className="flex justify-between"
                 onClick={handleWishlistBtnClick}
               >
                 <p>Wishlist</p>
-                <HiOutlineHeart className={styles.icon} />
+                <WishlistIcon />
               </span>
               <Link to="" className="flex md:hidden">
                 Sign in
