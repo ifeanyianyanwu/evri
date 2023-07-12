@@ -45,13 +45,14 @@ const Shop = () => {
 
         <div className="flex gap-6 md:py-10 py-6">
           <FiltersSidebar />
-          <section className="grid gap-8">
+          <section className="grid gap-8 w-full">
             <div className="flex justify-between items-center">
               <p className="text-xs">{filteredProducts.length} Products</p>
               <div className="md:hidden block">
                 <SearchInput />
               </div>
             </div>
+            {!filteredProducts.length && <p>No product found</p>}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 flex-grow">
               {filteredProducts?.map((item) => (
                 <Product product={item} key={item.id} />
