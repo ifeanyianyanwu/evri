@@ -7,13 +7,13 @@ import { addToCart } from "../../store/features/cart/cartSlice";
 import { addToWishlist } from "../../store/features/wishlist/wishlistSlice";
 import { useNavigate } from "react-router-dom";
 
-type IProps = { product: ProductType; index: number; arrLength?: number };
+type IProps = { product: ProductType; index?: number; arrLength?: number };
 
 const Product = ({ product, index, arrLength }: IProps) => {
   const [isInWishlist, setIsInWishlist] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const wishlistItems = useAppSelector((state) => state.wishlist.wishlistItems);
+  const { wishlistItems } = useAppSelector((state) => state.wishlist);
 
   //check if product is already in wishlist
   useEffect(() => {

@@ -5,12 +5,7 @@ import {
   showWishlist,
   showNavbar,
 } from "../../store/features/modals/modalsSlice";
-import {
-  HiOutlineHeart,
-  HiOutlineSearch,
-  HiOutlineShoppingCart,
-  HiX,
-} from "react-icons/hi";
+import { HiX } from "react-icons/hi";
 import { styles } from "../../styles";
 import Logo from "../../assets/Logo";
 import { Link } from "react-router-dom";
@@ -20,7 +15,7 @@ import WishlistIcon from "../wishlist/WishlistIcon";
 const ToggleNavbar = () => {
   const dispatch = useAppDispatch();
 
-  const navbarShown = useAppSelector((state) => state.modals.navbarShown);
+  const { navbarShown } = useAppSelector((state) => state.modals);
 
   const handleCloseBtnClick = () => {
     dispatch(showNavbar(false));

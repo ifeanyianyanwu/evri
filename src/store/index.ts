@@ -4,6 +4,7 @@ import cartReducer from "./features/cart/cartSlice";
 import wishlistReducer from "./features/wishlist/wishlistSlice";
 import { storeApi } from "./features/api/apiSlice";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
+import productsReducer from "./features/products/productsSlice";
 
 // ...
 
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   modals: modalsReducer,
   cart: cartReducer,
   wishlist: wishlistReducer,
+  products: productsReducer,
   [storeApi.reducerPath]: storeApi.reducer,
 });
 

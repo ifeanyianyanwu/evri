@@ -17,9 +17,9 @@ const BestSellers = () => {
       <Container>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {error ? (
-            <>An error occured</>
+            <p>An error occured</p>
           ) : isLoading ? (
-            <>Loading...</>
+            <p>Loading...</p>
           ) : (
             <div className="col-span-2 md:col-span-1 relative my-2">
               <h1 className="text-5xl font-extralight text-gray-700">

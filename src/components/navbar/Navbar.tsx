@@ -19,7 +19,7 @@ type IProps = {
 };
 
 const Navbar = ({ shop }: IProps) => {
-  const [searchShown, setSearchShown] = useState(false);
+  const [pageIsShop, setPageIsShop] = useState(false);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -27,11 +27,11 @@ const Navbar = ({ shop }: IProps) => {
 
   useEffect(() => {
     if (location.pathname === "/shop") {
-      setSearchShown(true);
+      setPageIsShop(true);
     }
     return () => {
       if (location.pathname === "/shop") {
-        setSearchShown(false);
+        setPageIsShop(false);
       }
     };
   }, [location]);
@@ -48,7 +48,11 @@ const Navbar = ({ shop }: IProps) => {
   };
 
   return (
-    <div className="flex justify-between px-[5%] md:px-10 py-7 items-center gap-6 z-20 absolute top-0 w-full">
+    <div
+      className={`flex justify-between px-[5%] md:px-10 py-7 items-center gap-6 z-20  top-0 w-full ${
+        pageIsShop ? "relative" : "absolute"
+      }`}
+    >
       <HiMenu
         className={`${styles.icon} md:hidden block`}
         onClick={handleMenuClick}
@@ -70,7 +74,7 @@ const Navbar = ({ shop }: IProps) => {
 
       <div className="flex gap-6 items-center md:ml-auto">
         <span className="hidden md:flex gap-6 items-center">
-          {searchShown && <SearchInput />}
+          {pageIsShop && <SearchInput />}
           <WishlistIcon onClick={handleWishlistBtnClick} />
         </span>
         <CartIcon onClick={handleCartBtnClick} />

@@ -30,6 +30,7 @@ const App = () => {
         newestOnTop={true}
         closeOnClick
         hideProgressBar
+        position="top-left"
       />
     </div>
   );
