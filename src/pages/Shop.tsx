@@ -1,7 +1,12 @@
-import React from "react";
+import { Navbar } from "../components";
 
 const Shop = () => {
-  return <div>Shop</div>;
+  return (
+    <div>
+      <Navbar />
+      Shop
+    </div>
+  );
 };
 
 export default Shop;
