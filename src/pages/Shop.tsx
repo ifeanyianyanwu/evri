@@ -52,7 +52,7 @@ const Shop = () => {
                 <SearchInput />
               </div>
             </div>
-            {!filteredProducts.length && <p>No product found</p>}
+            {/* {!filteredProducts.length && <p>No product found</p>} */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 flex-grow">
               {filteredProducts?.map((item) => (
                 <Product product={item} key={item.id} />
