@@ -43,20 +43,21 @@ const Shop = () => {
           </span>
         </div>
 
-        <div className="flex justify-between items-center md:py-10 py-6 gap-2">
-          <p className="text-xs">{filteredProducts.length} Products</p>
-          <div className="md:hidden block">
-            <SearchInput />
-          </div>
-        </div>
-
-        <div className="flex gap-6">
+        <div className="flex gap-6 md:py-10 py-6">
           <FiltersSidebar />
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 flex-grow">
-            {filteredProducts?.map((item) => (
-              <Product product={item} key={item.id} />
-            ))}
-          </div>
+          <section className="grid gap-8">
+            <div className="flex justify-between items-center">
+              <p className="text-xs">{filteredProducts.length} Products</p>
+              <div className="md:hidden block">
+                <SearchInput />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 flex-grow">
+              {filteredProducts?.map((item) => (
+                <Product product={item} key={item.id} />
+              ))}
+            </div>
+          </section>
         </div>
       </Container>
     </>
