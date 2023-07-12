@@ -1,22 +1,40 @@
-import {
-  HiMenu,
-  HiOutlineSearch,
-  HiOutlineHeart,
-  HiOutlineShoppingCart,
-} from "react-icons/hi";
+import { HiMenu } from "react-icons/hi";
 import Logo from "../../assets/Logo";
 import { styles } from "../../styles";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../store/hooks";
 import {
   showCart,
   showNavbar,
   showWishlist,
 } from "../../store/features/modals/modalsSlice";
+import { useEffect, useState, useRef } from "react";
+import CartIcon from "../cart/CartIcon";
+import WishlistIcon from "../wishlist/WishlistIcon";
+import SearchInput from "../ui/searchinput/SearchInput";
 
-const Navbar = () => {
+type IProps = {
+  //passing a prop, alternative to determine if search icon should be shown
+  shop?: true;
+};
+
+const Navbar = ({ shop }: IProps) => {
+  const [searchShown, setSearchShown] = useState(false);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/shop") {
+      setSearchShown(true);
+    }
+    return () => {
+      if (location.pathname === "/shop") {
+        setSearchShown(false);
+      }
+    };
+  }, [location]);
 
   const handleMenuClick = () => {
     dispatch(showNavbar(true));
@@ -52,16 +70,10 @@ const Navbar = () => {
 
       <div className="flex gap-6 items-center md:ml-auto">
         <span className="hidden md:flex gap-6 items-center">
-          <HiOutlineSearch className={styles.icon} />
-          <HiOutlineHeart
-            className={styles.icon}
-            onClick={handleWishlistBtnClick}
-          />
+          {searchShown && <SearchInput />}
+          <WishlistIcon onClick={handleWishlistBtnClick} />
         </span>
-        <HiOutlineShoppingCart
-          className={styles.icon}
-          onClick={handleCartBtnClick}
-        />
+        <CartIcon onClick={handleCartBtnClick} />
         <Link to="" className="hidden md:flex text-gray-700">
           Sign in
         </Link>
