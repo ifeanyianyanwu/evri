@@ -16,7 +16,7 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
     searchProducts: (state, action: PayloadAction<string>) => {
-      state.searchText = action.payload;
+      state.searchText = action.payload.toLowerCase();
     },
   },
 });

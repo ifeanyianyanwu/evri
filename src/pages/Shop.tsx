@@ -17,14 +17,13 @@ const Shop = () => {
 
   useEffect(() => {
     let filteredData: ProductList = data;
-    console.log(searchText);
+
     if (!isLoading && !error && data?.length) {
       filteredData = data.filter((item: ProductType) =>
         item.name.includes(searchText)
       );
-      console.log(filteredData);
     }
-    console.log(filteredData);
+
     setFilteredProducts(filteredData);
   }, [searchText, data]);
 
@@ -56,7 +55,7 @@ const Shop = () => {
                     <SearchInput />
                   </div>
                 </div>
-                {/* {!filteredProducts.length && <p>No product found</p>} */}
+                {!filteredProducts.length && <p>No product found</p>}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 flex-grow">
                   {filteredProducts?.map((item) => (
                     <Product product={item} key={item.id} />
