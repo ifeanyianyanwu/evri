@@ -19,7 +19,7 @@ const SearchInput = () => {
 
   return (
     <>
-      <div className="relative">
+      <div className="relative w-fit">
         <HiOutlineSearch
           className={`${styles.icon} z-[1]`}
           onClick={handleSearchBtnClick}

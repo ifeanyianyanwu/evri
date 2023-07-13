@@ -8,6 +8,7 @@ import Container from "../layout/Container";
 import SearchInput from "../components/ui/searchinput/SearchInput";
 import { Link } from "react-router-dom";
 import FiltersSidebar from "../components/filters/FiltersSidebar";
+import Button from "../components/ui/button/Button";
 
 const Shop = () => {
   const { data, error, isLoading } = useGetProductsQuery(null);
@@ -49,11 +50,16 @@ const Shop = () => {
             <div className="flex gap-6 md:py-10 py-6">
               <FiltersSidebar />
               <section className="grid gap-8 w-full">
-                <div className="flex justify-between items-center">
-                  <p className="text-xs">{filteredProducts.length} Products</p>
-                  <div className="md:hidden block">
-                    <SearchInput />
+                <div className="md:hidden w-full flex justify-end">
+                  <SearchInput />
+                </div>
+                <div className="flex justify-between items-center gap-2">
+                  <div className="md:hidden block w-[50%]">
+                    <Button>Filters</Button>
                   </div>
+                  <p className="text-xs w-[50%] text-right">
+                    {filteredProducts.length} Products
+                  </p>
                 </div>
                 {!filteredProducts.length && <p>No product found</p>}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 flex-grow">
