@@ -1,6 +1,6 @@
 import { Navbar } from "../components";
 import { useGetProductsQuery } from "../store/features/api/apiSlice";
-import { ProductList } from "../types";
+import { Product as ProductType, ProductList } from "../types";
 import Product from "../components/product/Product";
 import { useAppSelector } from "../store/hooks";
 import { useEffect, useState } from "react";
@@ -13,16 +13,20 @@ const Shop = () => {
   const { data, error, isLoading } = useGetProductsQuery(null);
   const [filteredProducts, setFilteredProducts] = useState<ProductList>([]);
 
-  const typedData: ProductList = data;
   const { searchText } = useAppSelector((state) => state.products);
 
   useEffect(() => {
-    let filteredData = typedData;
-    if (typedData.length) {
-      filteredData = typedData.filter((item) => item.name.includes(searchText));
+    let filteredData: ProductList = data;
+    console.log(searchText);
+    if (!isLoading && !error && data?.length) {
+      filteredData = data.filter((item: ProductType) =>
+        item.name.includes(searchText)
+      );
+      console.log(filteredData);
     }
+    console.log(filteredData);
     setFilteredProducts(filteredData);
-  }, [searchText, typedData]);
+  }, [searchText, data]);
 
   return (
     <>
