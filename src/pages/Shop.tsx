@@ -57,7 +57,7 @@ const Shop = () => {
                   <div className="md:hidden block w-[50%]">
                     <Button>Filters</Button>
                   </div>
-                  <p className="text-xs w-[50%] text-right">
+                  <p className="text-xs w-[50%] text-right md:text-left">
                     {filteredProducts.length} Products
                   </p>
                 </div>
