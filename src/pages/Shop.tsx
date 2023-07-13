@@ -18,10 +18,10 @@ const Shop = () => {
 
   useEffect(() => {
     let filteredData = typedData;
-    if (!isLoading && !error && typedData.length) {
+    if (typedData.length) {
       filteredData = typedData.filter((item) => item.name.includes(searchText));
-      setFilteredProducts(filteredData);
     }
+    setFilteredProducts(filteredData);
   }, [searchText, typedData]);
 
   return (
