@@ -38,8 +38,8 @@ const Shop = () => {
           <p>An error occurred</p>
         ) : (
           <>
-            <div className="flex justify-between items-center md:py-10 py-6 gap-2">
-              <h1 className="text-xl font-base">Shop</h1>
+            <div className="flex justify-between items-center md:py-8 py-6 gap-2">
+              <h1 className="text-xl font-medium">Shop</h1>
               <span className="flex gap-2 text-xs">
                 <Link to="/">Home</Link>
                 &gt;
@@ -47,8 +47,8 @@ const Shop = () => {
               </span>
             </div>
 
-            <div className="flex gap-6 md:py-10 py-6">
-              <FiltersSidebar />
+            <div className="flex gap-8 md:py-8 py-6 items-start">
+              <FiltersSidebar products={data} />
               <section className="grid gap-8 w-full">
                 <div className="md:hidden w-full flex justify-end">
                   <SearchInput />
@@ -58,10 +58,10 @@ const Shop = () => {
                     <Button>Filters</Button>
                   </div>
                   <p className="text-xs w-[50%] text-right md:text-left">
-                    {filteredProducts.length} Products
+                    {filteredProducts?.length} Products
                   </p>
                 </div>
-                {!filteredProducts.length && <p>No product found</p>}
+                {!filteredProducts?.length && <p>No product found</p>}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 flex-grow">
                   {filteredProducts?.map((item) => (
                     <Product product={item} key={item.id} />
