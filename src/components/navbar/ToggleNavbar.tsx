@@ -67,9 +67,9 @@ const ToggleNavbar = () => {
                 <p>Wishlist</p>
                 <WishlistIcon />
               </span>
-              <Link to="" className="flex md:hidden">
+              {/* <Link to="" className="flex md:hidden">
                 Sign in
-              </Link>
+              </Link> */}
             </div>
           </div>
           {navbarShown && (
