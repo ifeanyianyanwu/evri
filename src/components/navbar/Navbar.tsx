@@ -49,7 +49,7 @@ const Navbar = ({ shop }: IProps) => {
 
   return (
     <div
-      className={`flex justify-between px-[5%] md:px-10 py-7 items-center gap-6 z-20  top-0 w-full ${
+      className={`flex justify-between px-[5%] md:px-8 py-7 items-center gap-6 z-20 top-0 w-full ${
         pageIsShop ? "relative" : "absolute"
       }`}
     >
@@ -78,9 +78,9 @@ const Navbar = ({ shop }: IProps) => {
           <WishlistIcon onClick={handleWishlistBtnClick} />
         </span>
         <CartIcon onClick={handleCartBtnClick} />
-        <Link to="" className="hidden md:flex text-gray-700">
+        {/* <Link to="" className="hidden md:flex text-gray-700">
           Sign in
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
