@@ -44,12 +44,7 @@ export const FilterOptions = ({ products }: IProductProp) => {
     }
   }, [products]);
 
-  useEffect(() => {
-    console.log(filters);
-  }, [filters]);
-
   const handleInputChange = (e: SyntheticEvent) => {
-    e.preventDefault();
     const { name, value } = e.target as HTMLInputElement;
     dispatch(updateFilters({ name: name, filter: value }));
   };
@@ -63,14 +58,14 @@ export const FilterOptions = ({ products }: IProductProp) => {
           {filterOptions?.sort.map((item) => (
             <div key={item.name} className="flex gap-2 items-center">
               <input
-                type="radio"
+                type="checkbox"
                 id={item.value}
                 name="Sort"
                 onChange={handleInputChange}
                 value={item.value}
-                checked={item.value === filters.sort ? true : false}
+                checked={item.value === filters.sort}
               />
-              <label htmlFor={item.name} className="capitalize font-light">
+              <label htmlFor={item.value} className="capitalize font-light">
                 {item.name}
               </label>
             </div>
