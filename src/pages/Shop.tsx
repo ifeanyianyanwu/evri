@@ -7,30 +7,74 @@ import { useEffect, useState } from "react";
 import Container from "../layout/Container";
 import SearchInput from "../components/ui/searchinput/SearchInput";
 import { Link } from "react-router-dom";
-import FiltersSidebar from "../components/filters/FiltersSidebar";
+import FiltersSidebar from "../components/filters/Sidebar";
 import Button from "../components/ui/button/Button";
+import MobileFilters from "../components/filters/MobileFilters";
 
 const Shop = () => {
   const { data, error, isLoading } = useGetProductsQuery(null);
   const [filteredProducts, setFilteredProducts] = useState<ProductList>([]);
+  const [showFilterModal, setShowFilterModal] = useState<boolean>(false);
 
-  const { searchText } = useAppSelector((state) => state.products);
+  const { searchText, filters } = useAppSelector((state) => state.products);
 
+  //handle filter logic
   useEffect(() => {
     let filteredData: ProductList = data;
 
-    if (!isLoading && !error && data?.length) {
-      filteredData = data.filter((item: ProductType) =>
-        item.name.includes(searchText)
-      );
+    //check if there's data before before performing any action
+    if (!isLoading && !error && data?.length > 0) {
+      const { categories, colors, sort } = filters;
+
+      //check if there's any filter data before filtering
+      const filterValid =
+        categories.length > 0 || colors.length > 0 || sort !== "";
+
+      if (filterValid) {
+        filteredData = filteredData
+          .filter((product) => {
+            if (categories.length > 0)
+              return categories.includes(product.category);
+            else return product;
+          })
+          .filter((product) => {
+            if (colors.length > 0)
+              return colors.some((color) => product.colors.includes(color));
+            else return product;
+          })
+          .sort((a, b) => {
+            if (sort === "lowToHigh") {
+              return a.price - b.price;
+            } else if (sort === "highToLow") {
+              return b.price - a.price;
+            } else if (sort === "ascending") {
+              return a.name.localeCompare(b.name);
+            } else if (sort === "descending") {
+              return b.name.localeCompare(a.name);
+            }
+            return (a.id as any) - (b.id as any);
+          });
+      }
+
+      //handle search
+      if (searchText !== "") {
+        filteredData = filteredData.filter((item: ProductType) =>
+          item.name.includes(searchText.toLowerCase())
+        );
+      }
     }
 
     setFilteredProducts(filteredData);
-  }, [searchText, data]);
+  }, [filters, data, searchText]);
 
   return (
-    <>
+    <div className="relative">
       <Navbar />
+      <MobileFilters
+        showFilterModal={showFilterModal}
+        setShowFilterModal={setShowFilterModal}
+        products={data}
+      />
       <Container>
         {isLoading ? (
           <p>Loading...</p>
@@ -55,7 +99,9 @@ const Shop = () => {
                 </div>
                 <div className="flex justify-between items-center gap-2">
                   <div className="md:hidden block w-[50%]">
-                    <Button>Filters</Button>
+                    <Button onClick={() => setShowFilterModal(true)}>
+                      Filters
+                    </Button>
                   </div>
                   <p className="text-xs w-[50%] text-right md:text-left">
                     {filteredProducts?.length} Products
@@ -72,7 +118,7 @@ const Shop = () => {
           </>
         )}
       </Container>
-    </>
+    </div>
   );
 };
 
