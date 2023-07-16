@@ -44,6 +44,10 @@ export const FilterOptions = ({ products }: IProductProp) => {
     }
   }, [products]);
 
+  useEffect(() => {
+    console.log(filters);
+  }, [filters]);
+
   const handleInputChange = (e: SyntheticEvent) => {
     e.preventDefault();
     const { name, value } = e.target as HTMLInputElement;
@@ -64,9 +68,9 @@ export const FilterOptions = ({ products }: IProductProp) => {
                 name="Sort"
                 onChange={handleInputChange}
                 value={item.value}
-                checked={filters.sort === item.value}
+                checked={item.value === filters.sort ? true : false}
               />
-              <label htmlFor={item.value} className="capitalize font-light">
+              <label htmlFor={item.name} className="capitalize font-light">
                 {item.name}
               </label>
             </div>
