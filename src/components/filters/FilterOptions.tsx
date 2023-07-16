@@ -45,6 +45,7 @@ export const FilterOptions = ({ products }: IProductProp) => {
   }, [products]);
 
   const handleInputChange = (e: SyntheticEvent) => {
+    e.preventDefault();
     const { name, value } = e.target as HTMLInputElement;
     dispatch(updateFilters({ name: name, filter: value }));
   };
