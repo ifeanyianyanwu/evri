@@ -43,10 +43,7 @@ const ToggleNavbar = () => {
             }`}
           >
             <div className="flex justify-between px-[5%] md:px-10 py-7 items-center gap-6 w-full">
-              <HiX
-                className={`${styles.icon} sm:ml-auto ml-0`}
-                onClick={handleCloseBtnClick}
-              />
+              <HiX className={`${styles.icon}`} onClick={handleCloseBtnClick} />
               <span className="w-[80px] h-[50px] mx-auto block sm:hidden">
                 <Logo />
               </span>
