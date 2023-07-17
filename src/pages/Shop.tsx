@@ -59,7 +59,7 @@ const Shop = () => {
       //handle search
       if (searchText !== "") {
         filteredData = filteredData.filter((item: ProductType) =>
-          item.name.includes(searchText.toLowerCase())
+          item.name.toLowerCase().includes(searchText.toLowerCase())
         );
       }
     }

@@ -20,18 +20,21 @@ type IProps = {
 
 const Navbar = ({ shop }: IProps) => {
   const [pageIsShop, setPageIsShop] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/shop") {
+    if (location.pathname.includes("/shop")) {
       setPageIsShop(true);
+      if (location.pathname === "/shop") setShowSearch(true);
     }
     return () => {
-      if (location.pathname === "/shop") {
+      if (location.pathname.includes("/shop")) {
         setPageIsShop(false);
+        setShowSearch(false);
       }
     };
   }, [location]);
@@ -74,7 +77,7 @@ const Navbar = ({ shop }: IProps) => {
 
       <div className="flex gap-6 items-center md:ml-auto">
         <span className="hidden md:flex gap-6 items-center">
-          {pageIsShop && <SearchInput />}
+          {showSearch && <SearchInput />}
           <WishlistIcon onClick={handleWishlistBtnClick} />
         </span>
         <CartIcon onClick={handleCartBtnClick} />
