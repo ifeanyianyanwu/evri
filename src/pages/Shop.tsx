@@ -11,6 +11,7 @@ import FiltersSidebar from "../components/filters/Sidebar";
 import Button from "../components/ui/button/Button";
 import MobileFilters from "../components/filters/MobileFilters";
 import Loading from "../components/loading/Loading";
+import Error from "../components/error/Error";
 
 const Shop = () => {
   const { data, error, isLoading } = useGetProductsQuery(null);
@@ -79,7 +80,7 @@ const Shop = () => {
         {isLoading ? (
           <Loading />
         ) : error ? (
-          <p>An error occurred</p>
+          <Error />
         ) : (
           <>
             <div className="flex justify-between items-center md:py-8 py-6 gap-2">

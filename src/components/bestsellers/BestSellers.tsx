@@ -6,6 +6,7 @@ import Product from "../product/Product";
 import Button from "../ui/button/Button";
 import { useNavigate } from "react-router-dom";
 import Loading from "../loading/Loading";
+import Error from "../error/Error";
 
 const BestSellers = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const BestSellers = () => {
       <Container>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {error ? (
-            <p>An error occured</p>
+            <Error />
           ) : isLoading ? (
             <Loading />
           ) : (

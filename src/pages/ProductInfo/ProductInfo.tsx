@@ -19,6 +19,7 @@ import { Rating } from "./Rating";
 import RelatedProducts from "./RelatedProducts";
 import QuantityInput from "../../components/ui/quantityInput/QuantityInput";
 import Loading from "../../components/loading/Loading";
+import Error from "../../components/error/Error";
 
 const ProductInfo = () => {
   const [productInfo, setProductInfo] = useState<ProductInfoType>();
@@ -106,7 +107,7 @@ const ProductInfo = () => {
         {isLoading ? (
           <Loading />
         ) : error ? (
-          <p>An error occurred</p>
+          <Error />
         ) : (
           <>
             {/* heading */}
