@@ -10,6 +10,7 @@ import {
   increase,
   removeFromCart,
 } from "../../store/features/cart/cartSlice";
+import QuantityInput from "../ui/quantityInput/QuantityInput";
 
 type IProps = { product: CartItemType };
 
@@ -46,17 +47,12 @@ const CartItem = ({ product }: IProps) => {
           <p className="text-gray-600 capitalize font-semibold">
             {product.name}
           </p>
-          <span className="flex gap-3 items-center border-solid border-black border p-1 w-fit">
-            <AiOutlineMinus
-              onClick={handleDecreaseBtnClick}
-              className="cursor-pointer"
-            />
-            <p>{product.quantity}</p>
-            <AiOutlinePlus
-              onClick={handleIncreaseBtnClick}
-              className="cursor-pointer"
-            />
-          </span>
+          <QuantityInput
+            handleDecreaseBtnClick={handleDecreaseBtnClick}
+            handleIncreaseBtnClick={handleIncreaseBtnClick}
+            value={product.quantity}
+            className="flex gap-3 items-center border-solid border-black border p-1 w-fit"
+          />
         </div>
       </div>
 

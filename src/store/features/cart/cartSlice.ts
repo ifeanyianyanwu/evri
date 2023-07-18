@@ -32,18 +32,19 @@ const cartSlice = createSlice({
 
       toast.success("Item added to cart");
       if (!itemToAddExists) {
+        const totalPrice = itemToAdd.price * quantityOfItemToAdd;
         state.cartItems.unshift({
           id: itemToAdd.id,
           name: itemToAdd.name,
           price: itemToAdd.price,
           quantity: quantityOfItemToAdd,
-          totalPrice: itemToAdd.price,
+          totalPrice: totalPrice,
           image: itemToAdd.image,
         });
       } else {
         itemToAddExists.quantity += quantityOfItemToAdd;
-        itemToAddExists.totalPrice +=
-          itemToAddExists.price * quantityOfItemToAdd;
+        const newTotalPrice = itemToAddExists.price * quantityOfItemToAdd;
+        itemToAddExists.totalPrice += newTotalPrice;
       }
     },
 

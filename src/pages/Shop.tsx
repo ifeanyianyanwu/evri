@@ -2,7 +2,7 @@ import { Navbar } from "../components";
 import { useGetProductsQuery } from "../store/features/api/apiSlice";
 import { Product as ProductType, ProductList } from "../types";
 import Product from "../components/product/Product";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { useAppSelector } from "../store/hooks";
 import { useEffect, useState } from "react";
 import Container from "../layout/Container";
 import SearchInput from "../components/ui/searchinput/SearchInput";
@@ -15,7 +15,6 @@ const Shop = () => {
   const { data, error, isLoading } = useGetProductsQuery(null);
   const [filteredProducts, setFilteredProducts] = useState<ProductList>([]);
   const [showFilterModal, setShowFilterModal] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
   const { searchText, filters } = useAppSelector((state) => state.products);
 
   //handle filter logic
@@ -107,7 +106,9 @@ const Shop = () => {
                     {filteredProducts?.length} Products
                   </p>
                 </div>
-                {!filteredProducts?.length && <p>No product found</p>}
+                {!filteredProducts?.length && (
+                  <p className="text-xl mx-auto my-4">No product found</p>
+                )}
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 flex-grow">
                   {filteredProducts?.map((item) => (
                     <Product product={item} key={item.id} />

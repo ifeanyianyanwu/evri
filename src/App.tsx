@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Shop from "./pages/Shop";
-import ProductInfo from "./pages/ProductInfo";
+import ProductInfo from "./pages/ProductInfo/ProductInfo";
 import Cart from "./components/cart/Cart";
 import WishList from "./components/wishlist/WishList";
 import ToggleNavbar from "./components/navbar/ToggleNavbar";

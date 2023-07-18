@@ -3,19 +3,21 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import {
   useGetProductInfoQuery,
   useGetProductsQuery,
-} from "../store/features/api/apiSlice";
+} from "../../store/features/api/apiSlice";
 
-import { Navbar } from "../components";
-import Container from "../layout/Container";
-import { styles } from "../styles";
+import { Navbar } from "../../components";
+import Container from "../../layout/Container";
+import { styles } from "../../styles";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
-import { Product, ProductInfo as ProductInfoType } from "../types";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { addToCart } from "../store/features/cart/cartSlice";
+import { Product, ProductInfo as ProductInfoType } from "../../types";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { addToCart } from "../../store/features/cart/cartSlice";
 import { HiHeart, HiOutlineHeart } from "react-icons/hi";
-import { addToWishlist } from "../store/features/wishlist/wishlistSlice";
-import Button from "../components/ui/button/Button";
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { addToWishlist } from "../../store/features/wishlist/wishlistSlice";
+import Button from "../../components/ui/button/Button";
+import { Rating } from "./Rating";
+import RelatedProducts from "./RelatedProducts";
+import QuantityInput from "../../components/ui/quantityInput/QuantityInput";
 
 const ProductInfo = () => {
   const [productInfo, setProductInfo] = useState<ProductInfoType>();
@@ -32,11 +34,7 @@ const ProductInfo = () => {
   const dispatch = useAppDispatch();
 
   const { data, error, isLoading } = useGetProductInfoQuery(id);
-  const {
-    data: productsData,
-    error: productsError,
-    isLoading: productIsLoading,
-  } = useGetProductsQuery(null);
+  const { data: productsData } = useGetProductsQuery(null);
 
   const currencyFormat = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -47,6 +45,7 @@ const ProductInfo = () => {
     dispatch(
       addToCart({ product: product as Product, quantity: cartQuantity })
     );
+    setCartQuantity(1);
   };
 
   const handleAddToWishlistBtnClick = () => {
@@ -54,6 +53,7 @@ const ProductInfo = () => {
   };
 
   const handleIncreaseBtnClick = () => {
+    if (cartQuantity === productInfo!.stock) return;
     setCartQuantity((prev) => prev + 1);
   };
 
@@ -101,7 +101,7 @@ const ProductInfo = () => {
   return (
     <div>
       <Navbar />
-      <Container>
+      <Container className="overflow-hidden">
         {isLoading ? (
           <p>Loading...</p>
         ) : error ? (
@@ -130,17 +130,17 @@ const ProductInfo = () => {
               </span>
             </div>
             {/* product details content */}
-            <div className="flex flex-col sm:grid grid-flow-col md:grid-flow-row grid-cols-1 lg:grid-cols-2 grid-rows-2 lg:grid-rows-1 gap-8 my-8">
+            <div className="flex flex-col lg:grid grid-flow-col md:grid-flow-row grid-cols-1 lg:grid-cols-2 grid-rows-2 lg:grid-rows-1 gap-8 my-8">
               {/* image content */}
               <div className="grid grid-flow-col lg:grid-flow-row grid-cols-1 lg:grid-cols-5 grid-rows-5 lg:grid-rows-1 gap-4 h-[338px] lg:h-[395px] md:h-[800px] sm:h-[458px]">
                 <div className="flex flex-row lg:flex-col gap-2 max-w-full order-last lg:order-1 justify-between">
                   {productInfo?.images.map((img) => (
-                    <div key={img.id} className="h-full">
+                    <div key={img.id} className={"h-full"}>
                       <img
                         key={img.id}
                         src={img.thumbnails.small.url}
                         alt="product thumbnail"
-                        className="h-full w-full aspect-[5/3] sm:aspect-[7/4]"
+                        className="h-full w-full aspect-[5/3] sm:aspect-[7/4] cursor-pointer"
                         onClick={() =>
                           setDisplayedImage(img.thumbnails.full.url)
                         }
@@ -164,18 +164,21 @@ const ProductInfo = () => {
               </div>
 
               {/* other details content */}
-              <div className="">
-                <h1>{productInfo?.name}</h1>
-                <p>{productInfo?.description}</p>
-                <div>
-                  {productInfo?.stars}
-                  stars {productInfo?.reviews}
+              <div className="flex flex-col gap-5">
+                <h1 className="text-2xl font-base capitalize">
+                  {productInfo?.name}
+                </h1>
+                <p className="text-sm">{productInfo?.description}</p>
+                <div className="flex gap-3 items-center text-sm">
+                  <Rating ratings={productInfo?.stars} />
+                  <p>{productInfo?.reviews} Customer Reviews</p>
                 </div>
-                <p>
+                <p className="text-2xl font-base">
                   {productInfo?.price &&
                     currencyFormat.format(productInfo.price)}
                 </p>
-                <div>
+                <div className="flex gap-2 items-center">
+                  Colors:
                   {productInfo?.colors.map((color) => (
                     <div
                       key={color}
@@ -184,19 +187,16 @@ const ProductInfo = () => {
                     ></div>
                   ))}
                 </div>
-                <div>
-                  <span className="flex gap-3 items-center border-solid border-black border p-1 w-fit">
-                    <AiOutlineMinus
-                      onClick={handleDecreaseBtnClick}
-                      className="cursor-pointer"
-                    />
-                    <p>{cartQuantity}</p>
-                    <AiOutlinePlus
-                      onClick={handleIncreaseBtnClick}
-                      className="cursor-pointer"
-                    />
-                  </span>
+                <div className="flex gap-4 items-center flex-col sm:flex-row">
+                  <QuantityInput
+                    handleDecreaseBtnClick={handleDecreaseBtnClick}
+                    handleIncreaseBtnClick={handleIncreaseBtnClick}
+                    value={cartQuantity}
+                    className="flex gap-8 items-center justify-between border-solid border-black border p-[10px] w-full sm:w-fit"
+                  />
                   <Button
+                    onClick={handleAddToCartBtnClick}
+                    fullwidth
                     disabled={
                       productInfo?.stock && productInfo.stock > 0 ? false : true
                     }
@@ -204,14 +204,14 @@ const ProductInfo = () => {
                     ADD TO CART
                   </Button>
                 </div>
-                <div>
+                <div className="text-xs flex flex-col capitalize gap-1">
                   <p>Company: {productInfo?.company}</p>
                   <p>Category: {productInfo?.category}</p>
                   <p>In stock: {productInfo?.stock}</p>
                 </div>
               </div>
             </div>
-            <div>Related Products</div>
+            <RelatedProducts />
           </>
         )}
       </Container>
