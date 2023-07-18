@@ -96,9 +96,9 @@ const Shop = () => {
                 <div className="md:hidden w-full flex justify-end">
                   <SearchInput />
                 </div>
-                <div className="flex justify-between items-center gap-2">
+                <div className="flex justify-between items-center gap-8">
                   <div className="md:hidden block w-[50%]">
-                    <Button onClick={() => setShowFilterModal(true)}>
+                    <Button fullwidth onClick={() => setShowFilterModal(true)}>
                       Filters
                     </Button>
                   </div>

@@ -155,7 +155,7 @@ const ProductInfo = () => {
                     className="h-full w-full"
                   />
                   <div
-                    className="absolute -top-4 lg:-bottom-4 lg:top-auto right-2 bg-gray-800 p-2 rounded-full"
+                    className="absolute -top-5 lg:-bottom-5 lg:top-auto right-2 bg-gray-800 p-3 rounded-full"
                     onClick={handleAddToWishlistBtnClick}
                   >
                     {heartIcon}
