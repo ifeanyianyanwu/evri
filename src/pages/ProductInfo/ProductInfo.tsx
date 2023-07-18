@@ -18,6 +18,7 @@ import Button from "../../components/ui/button/Button";
 import { Rating } from "./Rating";
 import RelatedProducts from "./RelatedProducts";
 import QuantityInput from "../../components/ui/quantityInput/QuantityInput";
+import Loading from "../../components/loading/Loading";
 
 const ProductInfo = () => {
   const [productInfo, setProductInfo] = useState<ProductInfoType>();
@@ -103,7 +104,7 @@ const ProductInfo = () => {
       <Navbar />
       <Container className="overflow-hidden">
         {isLoading ? (
-          <p>Loading...</p>
+          <Loading />
         ) : error ? (
           <p>An error occurred</p>
         ) : (

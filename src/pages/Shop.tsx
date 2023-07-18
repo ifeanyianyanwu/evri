@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import FiltersSidebar from "../components/filters/Sidebar";
 import Button from "../components/ui/button/Button";
 import MobileFilters from "../components/filters/MobileFilters";
+import Loading from "../components/loading/Loading";
 
 const Shop = () => {
   const { data, error, isLoading } = useGetProductsQuery(null);
@@ -76,7 +77,7 @@ const Shop = () => {
       />
       <Container>
         {isLoading ? (
-          <p>Loading...</p>
+          <Loading />
         ) : error ? (
           <p>An error occurred</p>
         ) : (

@@ -5,6 +5,7 @@ import { ProductList } from "../../types";
 import Product from "../product/Product";
 import Button from "../ui/button/Button";
 import { useNavigate } from "react-router-dom";
+import Loading from "../loading/Loading";
 
 const BestSellers = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const BestSellers = () => {
           {error ? (
             <p>An error occured</p>
           ) : isLoading ? (
-            <p>Loading...</p>
+            <Loading />
           ) : (
             <div className="col-span-2 md:col-span-1 relative my-2">
               <h1 className="text-5xl font-extralight text-gray-700">
