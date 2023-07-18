@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ProductList } from "../../../types";
 
 type SliceState = {
+  products: ProductList;
   filters: {
     categories: string[];
     colors: string[];
@@ -11,6 +13,7 @@ type SliceState = {
 };
 
 const initialState: SliceState = {
+  products: [],
   filters: {
     categories: [],
     colors: [],

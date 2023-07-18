@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const BestSellers = () => {
   const navigate = useNavigate();
+
   const { data, error, isLoading } = useGetProductsQuery(null);
 
   const bestSellers: ProductList = data?.slice(0, 7);

@@ -2,7 +2,7 @@ import { Navbar } from "../components";
 import { useGetProductsQuery } from "../store/features/api/apiSlice";
 import { Product as ProductType, ProductList } from "../types";
 import Product from "../components/product/Product";
-import { useAppSelector } from "../store/hooks";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useEffect, useState } from "react";
 import Container from "../layout/Container";
 import SearchInput from "../components/ui/searchinput/SearchInput";
@@ -15,7 +15,7 @@ const Shop = () => {
   const { data, error, isLoading } = useGetProductsQuery(null);
   const [filteredProducts, setFilteredProducts] = useState<ProductList>([]);
   const [showFilterModal, setShowFilterModal] = useState<boolean>(false);
-
+  const dispatch = useAppDispatch();
   const { searchText, filters } = useAppSelector((state) => state.products);
 
   //handle filter logic
@@ -23,7 +23,7 @@ const Shop = () => {
     let filteredData: ProductList = data;
 
     //check if there's data before before performing any action
-    if (!isLoading && !error && data?.length > 0) {
+    if (data?.length > 0) {
       const { categories, colors, sort } = filters;
 
       //check if there's any filter data before filtering

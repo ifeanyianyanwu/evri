@@ -5,16 +5,18 @@ type IProps = {
   onClick?: () => void;
   type?: "button" | "submit" | "reset" | undefined;
   fullwidth?: boolean;
+  disabled?: boolean;
 };
 
-const Button = ({ children, onClick, type, fullwidth }: IProps) => {
+const Button = ({ children, onClick, type, fullwidth, disabled }: IProps) => {
   return (
     <button
       type={type || "button"}
       onClick={onClick}
-      className={`border-solid border-black border px-6 py-3 hover:bg-gray-800 hover:text-white transition-all duration-300 ${
+      className={`px-6 py-3 bg-gray-800 text-white ${
         fullwidth ? "sm:w-full" : "sm:w-fit"
-      } w-full`}
+      } w-full disabled:opacity-50`}
+      disabled={disabled || false}
     >
       {children}
     </button>

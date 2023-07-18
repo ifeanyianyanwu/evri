@@ -4,3 +4,7 @@ export const styles = {
   slideIn: "",
   slideOut: "",
 };
+export const text = {
+  paragraph: "text-gray-600",
+  heading: "text-gray-700",
+};
