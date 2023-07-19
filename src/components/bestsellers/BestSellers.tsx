@@ -19,30 +19,30 @@ const BestSellers = () => {
     <Section>
       <Container>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 relative">
+          <div className="col-span-2 md:col-span-1 relative my-2">
+            <h1 className="text-5xl font-extralight text-gray-700">
+              Explore Our Bestsellers
+            </h1>
+            <p className="my-6 text-gray-600">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit sint
+              delectus perferendis
+            </p>
+            <span className="absolute w-8 h-0.5 bg-black bottom-0"></span>
+          </div>
           {error ? (
             <Error />
           ) : isLoading ? (
             <Loading />
           ) : (
-            <div className="col-span-2 md:col-span-1 relative my-2">
-              <h1 className="text-5xl font-extralight text-gray-700">
-                Explore Our Bestsellers
-              </h1>
-              <p className="my-6 text-gray-600">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit
-                sint delectus perferendis
-              </p>
-              <span className="absolute w-8 h-0.5 bg-black bottom-0"></span>
-            </div>
+            bestSellers?.map((item, index) => (
+              <Product
+                key={item.id}
+                product={item}
+                index={index}
+                arrLength={bestSellers.length}
+              />
+            ))
           )}
-          {bestSellers?.map((item, index) => (
-            <Product
-              key={item.id}
-              product={item}
-              index={index}
-              arrLength={bestSellers.length}
-            />
-          ))}
         </div>
         <div className="flex justify-center mt-14">
           <Button onClick={() => navigate("/shop")}>SEE ALL PRODUCTS</Button>
