@@ -32,7 +32,7 @@ const BestSellers = () => {
           {error ? (
             <Error />
           ) : isLoading ? (
-            <div className="relative">
+            <div className="relative grid place-content-center col-span-2">
               <Loading />
             </div>
           ) : (
