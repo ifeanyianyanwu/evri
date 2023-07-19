@@ -1,8 +1,6 @@
-import React from "react";
-
 const Loading = () => {
   return (
-    <div className="h-screen w-full grid place-content-center fixed">
+    <div className="inset-0 grid place-content-center fixed">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
