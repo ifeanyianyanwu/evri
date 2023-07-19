@@ -101,7 +101,7 @@ const ProductInfo = () => {
   }, [wishlistItems, productInfo]);
 
   return (
-    <div>
+    <div className="min-h-screen h-svh">
       <Navbar />
       <Container className="overflow-hidden">
         {isLoading ? (

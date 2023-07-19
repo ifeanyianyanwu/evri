@@ -69,7 +69,7 @@ const Shop = () => {
   }, [filters, data, searchText]);
 
   return (
-    <div className="relative">
+    <div className="relative min-h-screen h-svh">
       <Navbar />
       <MobileFilters
         showFilterModal={showFilterModal}
