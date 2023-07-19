@@ -18,7 +18,7 @@ const BestSellers = () => {
   return (
     <Section>
       <Container>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 relative">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="col-span-2 md:col-span-1 relative my-2">
             <h1 className="text-5xl font-extralight text-gray-700">
               Explore Our Bestsellers
@@ -32,7 +32,9 @@ const BestSellers = () => {
           {error ? (
             <Error />
           ) : isLoading ? (
-            <Loading />
+            <div className="relative">
+              <Loading />
+            </div>
           ) : (
             bestSellers?.map((item, index) => (
               <Product
