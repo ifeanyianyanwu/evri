@@ -7,6 +7,7 @@ import ProductInfo from "./pages/ProductInfo/ProductInfo";
 import Cart from "./components/cart/Cart";
 import WishList from "./components/wishlist/WishList";
 import ToggleNavbar from "./components/navbar/ToggleNavbar";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   return (
@@ -15,9 +16,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:id" element={<ProductInfo />} />
-        <Route path="/cart" element={"<Cart />"} />
-        <Route path="*" element={"<NotFound />"} />
-        <Route path="/404" element={"<NotFound />"} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="/404" element={<NotFound />} />
       </Routes>
 
       <Cart />

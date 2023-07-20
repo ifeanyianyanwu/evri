@@ -132,7 +132,7 @@ const ProductInfo = () => {
               </span>
             </div>
             {/* product details content */}
-            <div className="flex flex-col lg:grid grid-flow-col md:grid-flow-row grid-cols-1 lg:grid-cols-2 grid-rows-2 lg:grid-rows-1 gap-8 my-8">
+            <div className="flex flex-col lg:grid grid-flow-col md:grid-flow-row grid-cols-1 lg:grid-cols-2 grid-rows-2 lg:grid-rows-1 gap-8 md:gap-12 my-8">
               {/* image content */}
               <div className="grid grid-flow-col lg:grid-flow-row grid-cols-1 lg:grid-cols-5 grid-rows-5 lg:grid-rows-1 gap-4 h-[338px] lg:h-[395px] md:h-[800px] sm:h-[458px]">
                 <div className="flex flex-row lg:flex-col gap-2 max-w-full order-last lg:order-1 justify-between">
@@ -213,7 +213,7 @@ const ProductInfo = () => {
                 </div>
               </div>
             </div>
-            <RelatedProducts />
+            <RelatedProducts category={productInfo?.category} />
           </>
         )}
       </Container>

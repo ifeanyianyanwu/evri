@@ -69,8 +69,8 @@ const Cart = () => {
             </div>
             {numberOfItemsInCart !== 0 && (
               <div className="px-10 py-6 flex justify-between items-center gap-6 sm:flex-row flex-col">
-                <p>Subtotal: {currencyFormat.format(totalPrice)}</p>
-                <Button>VIEW CART</Button>
+                <p>Total: {currencyFormat.format(totalPrice)}</p>
+                <Button>CHECK OUT</Button>
               </div>
             )}
           </div>
