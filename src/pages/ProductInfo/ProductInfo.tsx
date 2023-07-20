@@ -17,6 +17,7 @@ import { addToWishlist } from "../../store/features/wishlist/wishlistSlice";
 import { Rating } from "./Rating";
 import RelatedProducts from "./RelatedProducts";
 import { QuantityInput, Button } from "../../components/ui";
+import { useFormatCurrency } from "../../hooks/useFormatCurrency";
 
 const ProductInfo = () => {
   const [productInfo, setProductInfo] = useState<ProductInfoType>();
@@ -32,13 +33,10 @@ const ProductInfo = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+  const formattedPrice = useFormatCurrency(productInfo?.price);
+
   const { data, error, isLoading } = useGetProductInfoQuery(id);
   const { data: productsData } = useGetProductsQuery(null);
-
-  const currencyFormat = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
 
   const handleAddToCartBtnClick = () => {
     dispatch(
@@ -172,10 +170,7 @@ const ProductInfo = () => {
                   <Rating ratings={productInfo?.stars} />
                   <p>{productInfo?.reviews} Customer Reviews</p>
                 </div>
-                <p className="text-2xl font-base">
-                  {productInfo?.price &&
-                    currencyFormat.format(productInfo.price)}
-                </p>
+                <p className="text-2xl font-base">{formattedPrice}</p>
                 <div className="flex gap-2 items-center">
                   Colors:
                   {productInfo?.colors.map((color) => (
