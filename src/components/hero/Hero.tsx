@@ -1,18 +1,9 @@
 import Navbar from "../navbar/Navbar";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import ToggleNavbar from "../navbar/ToggleNavbar";
+import { Link } from "react-router-dom";
 import { CgArrowLongRight } from "react-icons/cg";
 import { styles } from "../../styles";
-
-type Contents = {
-  content: {
-    title: string;
-    text: string;
-    link: string;
-    bg: string;
-  };
-}[];
+import { heroContents } from "../../helper";
 
 const Hero = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -31,45 +22,17 @@ const Hero = () => {
 
   const updateIndex = (newIndex: number) => {
     if (newIndex < 0) {
-      newIndex = contents.length - 1;
-    } else if (newIndex >= contents.length) {
+      newIndex = heroContents.length - 1;
+    } else if (newIndex >= heroContents.length) {
       newIndex = 0;
     }
-
     setActiveIndex(newIndex);
   };
-
-  const contents: Contents = [
-    {
-      content: {
-        title: "New Arrivals",
-        text: "Create Your Own",
-        link: "Explore Now",
-        bg: "bg-hero-one",
-      },
-    },
-    {
-      content: {
-        title: "Kitchen",
-        text: "Stools with Style",
-        link: "Explore Now",
-        bg: "bg-hero-two",
-      },
-    },
-    {
-      content: {
-        title: "Living Room",
-        text: "New Arrivals",
-        link: "Explore Now",
-        bg: "bg-hero-three",
-      },
-    },
-  ];
 
   return (
     <div className="relative h-screen h-svh w-full stack">
       <Navbar />
-      {contents.map((item, index) => (
+      {heroContents.map((item, index) => (
         <div
           key={index}
           className={`bg-cover bg-center h-screen h-svh w-full ${
@@ -123,7 +86,7 @@ const Hero = () => {
         </div>
       ))}
       <div className="absolute bottom-10 left-10 mx-0 md:left-20 md:mx-6 flex gap-4">
-        {contents.map((item, index) => (
+        {heroContents.map((item, index) => (
           <div
             key={index}
             onClick={() => setActiveIndex(index)}

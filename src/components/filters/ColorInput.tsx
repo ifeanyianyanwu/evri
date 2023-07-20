@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import convert from "color-convert";
 import { useAppSelector } from "../../store/hooks";
 
+type IOnChange = { name: string; value: string };
+
 type IProps = {
   item: string;
-  onChange: ({ name, value }: { name: string; value: string }) => void;
+  onChange: ({ name, value }: IOnChange) => void;
 };
 
 export const ColorInput = ({ item, onChange }: IProps) => {

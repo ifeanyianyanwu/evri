@@ -6,13 +6,18 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { addToCart } from "../../store/features/cart/cartSlice";
 import { addToWishlist } from "../../store/features/wishlist/wishlistSlice";
 import { useNavigate } from "react-router-dom";
+import { useFormatCurrency } from "../../hooks/useFormatCurrency";
 
 type IProps = { product: ProductType; index?: number; arrLength?: number };
 
 const Product = ({ product, index, arrLength }: IProps) => {
   const [isInWishlist, setIsInWishlist] = useState<boolean>(false);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const formattedPrice = useFormatCurrency(product.price);
+
   const { wishlistItems } = useAppSelector((state) => state.wishlist);
 
   //check if product is already in wishlist
@@ -24,11 +29,6 @@ const Product = ({ product, index, arrLength }: IProps) => {
       setIsInWishlist(false);
     }
   }, [wishlistItems, product]);
-
-  const currencyFormat = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
 
   const handleAddToCartBtnClick = () => {
     dispatch(addToCart({ product: product, quantity: 1 }));
@@ -49,7 +49,7 @@ const Product = ({ product, index, arrLength }: IProps) => {
       key={product.id}
       className={`grid overflow-hidden group/card  my-2 hover:shadow-normal ${
         arrLength && index === (arrLength as number) - 1 ? "md:grid hidden" : ""
-      }`}
+      } animate-slideup`}
     >
       <div className="overflow-hidden">
         <img
@@ -62,7 +62,7 @@ const Product = ({ product, index, arrLength }: IProps) => {
       </div>
       <div className="translate-y-[40%] grid gap-2 p-4 group-hover/card:translate-y-0 transition-all duration-500">
         <p className="capitalize text-gray-600">{product.name}</p>
-        <p className="text-gray-600">{currencyFormat.format(product.price)}</p>
+        <p className="text-gray-600">{formattedPrice}</p>
         <div className="flex justify-between items-center">
           <p
             className="text-gray-600 text-sm font-semibold cursor-pointer"

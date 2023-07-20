@@ -1,26 +1,20 @@
 import { CartItem as CartItemType } from "../../types";
-import {
-  AiOutlineCloseCircle,
-  AiOutlineMinus,
-  AiOutlinePlus,
-} from "react-icons/ai";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useAppDispatch } from "../../store/hooks";
 import {
   decrease,
   increase,
   removeFromCart,
 } from "../../store/features/cart/cartSlice";
-import QuantityInput from "../ui/quantityInput/QuantityInput";
+import { QuantityInput } from "../ui";
+import { useFormatCurrency } from "../../hooks/useFormatCurrency";
 
 type IProps = { product: CartItemType };
 
 const CartItem = ({ product }: IProps) => {
   const dispatch = useAppDispatch();
 
-  const currencyFormat = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+  const formattedCurrency = useFormatCurrency(product.price);
 
   const handleIncreaseBtnClick = () => {
     dispatch(increase(product.id));
@@ -62,7 +56,7 @@ const CartItem = ({ product }: IProps) => {
           className="cursor-pointer text-gray-400 hover:text-black"
           onClick={handleRemoveBtnClick}
         />
-        <p className="text-gray-600">{currencyFormat.format(product.price)}</p>
+        <p className="text-gray-600">{formattedCurrency}</p>
       </div>
     </div>
   );

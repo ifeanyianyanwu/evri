@@ -1,18 +1,20 @@
-import Section from "../../layout/Section";
-import Container from "../../layout/Container";
+import { Container, Section } from "../../layout";
 import { useGetProductsQuery } from "../../store/services/api/apiSlice";
 import { ProductList } from "../../types";
-import Product from "../product/Product";
-import Button from "../ui/button/Button";
+import { Button } from "../ui";
 import { useNavigate } from "react-router-dom";
 import Loading from "../loading/Loading";
 import Error from "../error/Error";
+import Product from "../product/Product";
 
 const BestSellers = () => {
+  //Get the react router Navigate function
   const navigate = useNavigate();
 
+  // Fetch data from an API using the useGetProductsQuery hook
   const { data, error, isLoading } = useGetProductsQuery(null);
 
+  // Extract the first 7 items from the fetched data as the bestSellers
   const bestSellers: ProductList = data?.slice(0, 7);
 
   return (

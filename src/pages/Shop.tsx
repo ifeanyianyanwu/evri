@@ -1,23 +1,26 @@
-import { Navbar } from "../components";
+import {
+  Navbar,
+  Product,
+  Sidebar,
+  MobileFilters,
+  Loading,
+  Error,
+} from "../components";
 import { useGetProductsQuery } from "../store/services/api/apiSlice";
 import { Product as ProductType, ProductList } from "../types";
-import Product from "../components/product/Product";
 import { useAppSelector } from "../store/hooks";
 import { useEffect, useState } from "react";
-import Container from "../layout/Container";
-import SearchInput from "../components/ui/searchinput/SearchInput";
-import { Link } from "react-router-dom";
-import FiltersSidebar from "../components/filters/Sidebar";
-import Button from "../components/ui/button/Button";
-import MobileFilters from "../components/filters/MobileFilters";
-import Loading from "../components/loading/Loading";
-import Error from "../components/error/Error";
+import { Container } from "../layout";
+import { Link, useLocation } from "react-router-dom";
+import { Button, SearchInput } from "../components/ui";
 
 const Shop = () => {
   const { data, error, isLoading } = useGetProductsQuery(null);
   const [filteredProducts, setFilteredProducts] = useState<ProductList>([]);
   const [showFilterModal, setShowFilterModal] = useState<boolean>(false);
   const { searchText, filters } = useAppSelector((state) => state.products);
+
+  const location = useLocation();
 
   //handle filter logic
   useEffect(() => {
@@ -68,6 +71,11 @@ const Shop = () => {
     setFilteredProducts(filteredData);
   }, [filters, data, searchText]);
 
+  //scroll to the top of the shop
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <div className="relative min-h-screen h-svh">
       <Navbar />
@@ -93,7 +101,7 @@ const Shop = () => {
             </div>
 
             <div className="flex gap-8 md:py-8 py-6 items-start">
-              <FiltersSidebar products={data} />
+              <Sidebar products={data} />
               <section className="grid gap-8 w-full">
                 <div className="md:hidden w-full flex justify-end">
                   <SearchInput />

@@ -16,7 +16,7 @@ const RelatedProducts = ({ category }: IProps) => {
     .slice(0, 4);
 
   return (
-    <div className="flex flex-col gap-6 sm:gap-8 relative mb-8">
+    <div className="flex flex-col gap-6 relative mb-8 pt-8">
       {isLoading ? (
         <Loading />
       ) : error ? (

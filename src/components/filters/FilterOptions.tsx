@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Button from "../ui/button/Button";
+import { Button } from "../ui";
 import { ColorInput } from "./ColorInput";
 import { FilterGroup } from "./FilterGroup";
 import { sortOptions } from "../../helper";
@@ -10,7 +10,7 @@ import {
 } from "../../store/features/products/productsSlice";
 import { IProductProp } from "./Sidebar";
 
-export type State = {
+type State = {
   categories: string[];
   colors: string[];
   sort: { name: string; value: string }[];
@@ -18,6 +18,7 @@ export type State = {
 
 export const FilterOptions = ({ products }: IProductProp) => {
   const [filterOptions, setFilterOptions] = useState<State>();
+
   const dispatch = useAppDispatch();
 
   const { filters } = useAppSelector((state) => state.products);

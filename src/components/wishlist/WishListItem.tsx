@@ -9,18 +9,18 @@ import { addToCart } from "../../store/features/cart/cartSlice";
 import { useGetProductsQuery } from "../../store/services/api/apiSlice";
 import { addToWishlist } from "../../store/features/wishlist/wishlistSlice";
 import { useEffect, useState } from "react";
+import { useFormatCurrency } from "../../hooks/useFormatCurrency";
 
 type IProps = { product: WishlistItemType };
 
 const WishlistItem = ({ product }: IProps) => {
   const [filteredProduct, setFilteredProduct] = useState<Product | null>(null);
+
   const { data } = useGetProductsQuery(null);
+
   const dispatch = useAppDispatch();
 
-  const currencyFormat = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+  const formattedPrice = useFormatCurrency(product.price);
 
   //on mount fiter products object and get product equal to wish list product
   useEffect(() => {
@@ -68,7 +68,7 @@ const WishlistItem = ({ product }: IProps) => {
           className="cursor-pointer text-gray-400 hover:text-black"
           onClick={handleRemoveBtnClick}
         />
-        <p className="text-gray-600">{currencyFormat.format(product.price)}</p>
+        <p className="text-gray-600">{formattedPrice}</p>
       </div>
     </div>
   );

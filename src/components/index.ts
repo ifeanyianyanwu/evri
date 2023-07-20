@@ -21,7 +21,7 @@ export {
   Cart,
   Error,
   Loading,
-  Sidebar,
   MobileFilters,
   Product,
+  Sidebar,
 };

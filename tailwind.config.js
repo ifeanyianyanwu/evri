@@ -12,13 +12,13 @@ export default {
         "hero-three": "url('/src/assets/Home-Background-Three.webp')",
       },
       animation: {
-        slideup: "slideup 0.8s ease-in-out",
+        slideup: "slideup 1s ease",
       },
       keyframes: {
         slideup: {
           "0%": {
-            transform: "translateY(30px)",
-            opacity: "0",
+            transform: "translateY(50px)",
+            opacity: "0.5",
           },
           "100%": {
             transform: "translateY(0)",

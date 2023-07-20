@@ -7,11 +7,14 @@ import EmptyBag from "../../assets/EmptyBag";
 import CartItem from "./CartItem";
 import { useEffect } from "react";
 import { calculateTotal } from "../../store/features/cart/cartSlice";
-import Button from "../ui/button/Button";
+import { Button } from "../ui";
+import { useFormatCurrency } from "../../hooks/useFormatCurrency";
 
 const Cart = () => {
+  //Get the Redux dispatch function
   const dispatch = useAppDispatch();
 
+  //Retrieve data from the Redux store using selectors
   const cartShown = useAppSelector((state) => state.modals.cartShown);
   const numberOfItemsInCart = useAppSelector(
     (state) => state.cart.numberOfItemsInCart
@@ -19,19 +22,20 @@ const Cart = () => {
   const cartItems = useAppSelector((state) => state.cart.cartItems);
   const totalPrice = useAppSelector((state) => state.cart.total);
 
-  const currencyFormat = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+  //Format total price with currency
+  const formattedCurrency = useFormatCurrency(totalPrice);
 
+  //Handler to close the cart
   const handleCloseBtnClick = () => {
     dispatch(showCart(false));
   };
 
+  //Calculate total price when cart items changes
   useEffect(() => {
     dispatch(calculateTotal());
   }, [cartItems]);
 
+  //Find the element with ID 'cart' to create a portal
   const cart: Element = document.getElementById("cart") as Element;
 
   return (
@@ -69,7 +73,7 @@ const Cart = () => {
             </div>
             {numberOfItemsInCart !== 0 && (
               <div className="px-10 py-6 flex justify-between items-center gap-6 sm:flex-row flex-col">
-                <p>Total: {currencyFormat.format(totalPrice)}</p>
+                <p>Total: {formattedCurrency}</p>
                 <Button>CHECK OUT</Button>
               </div>
             )}

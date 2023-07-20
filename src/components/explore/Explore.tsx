@@ -1,51 +1,16 @@
-import Section from "../../layout/Section";
-import Container from "../../layout/Container";
+import { Container, Section } from "../../layout";
 import { Link } from "react-router-dom";
-import imageone from "../../assets/CTG-1.webp";
-import imagetwo from "../../assets/CTG-2.webp";
-import imagethree from "../../assets/CTG-3.webp";
-
-type Contents = {
-  content: {
-    title: string;
-    link: string;
-    img: string;
-  };
-}[];
+import { explore } from "../../helper";
 
 const Explore = () => {
-  const contents: Contents = [
-    {
-      content: {
-        title: "Simplicity",
-        link: "Explore Now",
-        img: imageone,
-      },
-    },
-    {
-      content: {
-        title: "Your Space",
-        link: "Shop Accessories",
-        img: imagetwo,
-      },
-    },
-    {
-      content: {
-        title: "Loft Chair",
-        link: "Shop Now",
-        img: imagethree,
-      },
-    },
-  ];
-
   return (
     <Section id="explore">
       <Container className="flex gap-10 flex-col md:flex-row mt-11 sm:mt-16">
-        {contents.map((item, index) => (
+        {explore.map((item, index) => (
           <div
             key={index}
             className={`relative overflow-hidden group/item ${
-              index === contents.length - 1 ? "lg:block block md:hidden" : ""
+              index === explore.length - 1 ? "lg:block block md:hidden" : ""
             }`}
           >
             <img
