@@ -1,6 +1,6 @@
 import Section from "../../layout/Section";
 import Container from "../../layout/Container";
-import { useGetProductsQuery } from "../../store/features/api/apiSlice";
+import { useGetProductsQuery } from "../../store/services/api/apiSlice";
 import { ProductList } from "../../types";
 import Product from "../product/Product";
 import Button from "../ui/button/Button";

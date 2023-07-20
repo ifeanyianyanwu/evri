@@ -1,5 +1,5 @@
 import { Navbar } from "../components";
-import { useGetProductsQuery } from "../store/features/api/apiSlice";
+import { useGetProductsQuery } from "../store/services/api/apiSlice";
 import { Product as ProductType, ProductList } from "../types";
 import Product from "../components/product/Product";
 import { useAppSelector } from "../store/hooks";

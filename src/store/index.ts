@@ -2,7 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import modalsReducer from "./features/modals/modalsSlice";
 import cartReducer from "./features/cart/cartSlice";
 import wishlistReducer from "./features/wishlist/wishlistSlice";
-import { storeApi } from "./features/api/apiSlice";
+import { storeApi } from "./services/api/apiSlice";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import productsReducer from "./features/products/productsSlice";
 

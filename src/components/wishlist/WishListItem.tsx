@@ -6,7 +6,7 @@ import {
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useAppDispatch } from "../../store/hooks";
 import { addToCart } from "../../store/features/cart/cartSlice";
-import { useGetProductsQuery } from "../../store/features/api/apiSlice";
+import { useGetProductsQuery } from "../../store/services/api/apiSlice";
 import { addToWishlist } from "../../store/features/wishlist/wishlistSlice";
 import { useEffect, useState } from "react";
 

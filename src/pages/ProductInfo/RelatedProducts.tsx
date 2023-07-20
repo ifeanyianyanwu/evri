@@ -1,7 +1,7 @@
 import Error from "../../components/error/Error";
 import Loading from "../../components/loading/Loading";
 import Product from "../../components/product/Product";
-import { useGetProductsQuery } from "../../store/features/api/apiSlice";
+import { useGetProductsQuery } from "../../store/services/api/apiSlice";
 import { Product as ProductType, ProductList } from "../../types";
 
 type IProps = {

@@ -1,4 +1,4 @@
-import { SyntheticEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../ui/button/Button";
 import { ColorInput } from "./ColorInput";
 import { FilterGroup } from "./FilterGroup";
@@ -44,8 +44,13 @@ export const FilterOptions = ({ products }: IProductProp) => {
     }
   }, [products]);
 
-  const handleInputChange = (e: SyntheticEvent) => {
-    const { name, value } = e.target as HTMLInputElement;
+  const handleInputChange = ({
+    name,
+    value,
+  }: {
+    name: string;
+    value: string;
+  }) => {
     dispatch(updateFilters({ name: name, filter: value }));
   };
 
@@ -54,41 +59,53 @@ export const FilterOptions = ({ products }: IProductProp) => {
       <h4 className="mb-6 font-medium">Filter By</h4>
 
       <div className="grid gap-2">
-        <FilterGroup title="Sort By">
+        <FilterGroup title="SORT BY">
           {filterOptions?.sort.map((item) => (
-            <div key={item.name} className="flex gap-2 items-center">
-              <input
-                type="checkbox"
-                id={item.value}
-                name="Sort"
-                onChange={handleInputChange}
-                value={item.value}
-                checked={item.value === filters.sort}
-              />
-              <label htmlFor={item.value} className="capitalize font-light">
+            <div
+              key={item.name}
+              className="cursor-pointer w-fit"
+              onClick={() =>
+                handleInputChange({ name: "Sort", value: item.value })
+              }
+            >
+              <p
+                className={`${
+                  item.value === filters.sort ? "text-black" : "text-gray-500"
+                } hover:text-black capitalize`}
+              >
                 {item.name}
-              </label>
+              </p>
+              {item.value === filters.sort ? (
+                <div className="w-full h-[1px] bg-black"></div>
+              ) : null}
             </div>
           ))}
         </FilterGroup>
-        <FilterGroup title="Category">
+        <FilterGroup title="CATEGORY">
           {filterOptions?.categories.map((item) => (
-            <div key={item} className="flex gap-2 items-center">
-              <input
-                type="checkbox"
-                id={item}
-                name="Category"
-                onChange={handleInputChange}
-                value={item}
-                checked={filters.categories.includes(item)}
-              />
-              <label htmlFor={item} className="capitalize font-light">
+            <div
+              key={item}
+              className="cursor-pointer w-fit"
+              onClick={() =>
+                handleInputChange({ name: "Category", value: item })
+              }
+            >
+              <p
+                className={`${
+                  filters.categories.includes(item)
+                    ? "text-black"
+                    : "text-gray-500"
+                } hover:text-black capitalize`}
+              >
                 {item}
-              </label>
+              </p>
+              {filters.categories.includes(item) ? (
+                <div className="w-full h-[1px] bg-black"></div>
+              ) : null}
             </div>
           ))}
         </FilterGroup>
-        <FilterGroup title="Colors">
+        <FilterGroup title="COLORS">
           {filterOptions?.colors.map((item) => (
             <ColorInput item={item} key={item} onChange={handleInputChange} />
           ))}

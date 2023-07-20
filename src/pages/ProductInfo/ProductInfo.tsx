@@ -3,7 +3,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import {
   useGetProductInfoQuery,
   useGetProductsQuery,
-} from "../../store/features/api/apiSlice";
+} from "../../store/services/api/apiSlice";
 
 import { Navbar } from "../../components";
 import Container from "../../layout/Container";
