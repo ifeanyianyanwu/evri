@@ -206,14 +206,14 @@ const ProductInfo = () => {
                     ADD TO CART
                   </Button>
                 </div>
-                <div className="text-xs flex flex-col capitalize gap-1">
+                <div className="text-sm flex flex-col capitalize gap-1">
                   <p>Company: {productInfo?.company}</p>
                   <p>Category: {productInfo?.category}</p>
                   <p>In stock: {productInfo?.stock}</p>
                 </div>
               </div>
             </div>
-            <RelatedProducts category={productInfo?.category} />
+            <RelatedProducts category={productInfo?.category} id={id} />
           </>
         )}
       </Container>

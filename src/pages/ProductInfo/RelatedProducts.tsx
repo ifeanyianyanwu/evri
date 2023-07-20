@@ -6,13 +6,15 @@ import { Product as ProductType, ProductList } from "../../types";
 
 type IProps = {
   category: string | undefined;
+  id: string | undefined;
 };
 
-const RelatedProducts = ({ category }: IProps) => {
+const RelatedProducts = ({ category, id }: IProps) => {
   const { data, error, isLoading } = useGetProductsQuery(null);
 
   const relatedByCategory: ProductList = data
-    ?.filter((item: ProductType) => item.category === category)
+    ?.filter((item: ProductType) => item.id !== id)
+    .filter((item: ProductType) => item.category === category)
     .slice(0, 4);
 
   return (
