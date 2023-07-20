@@ -5,8 +5,8 @@ import {
   useGetProductsQuery,
 } from "../../store/services/api/apiSlice";
 
-import { Navbar } from "../../components";
-import Container from "../../layout/Container";
+import { Navbar, Loading, Error } from "../../components";
+import { Container } from "../../layout";
 import { styles } from "../../styles";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { Product, ProductInfo as ProductInfoType } from "../../types";
@@ -14,12 +14,9 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { addToCart } from "../../store/features/cart/cartSlice";
 import { HiHeart, HiOutlineHeart } from "react-icons/hi";
 import { addToWishlist } from "../../store/features/wishlist/wishlistSlice";
-import Button from "../../components/ui/button/Button";
 import { Rating } from "./Rating";
 import RelatedProducts from "./RelatedProducts";
-import QuantityInput from "../../components/ui/quantityInput/QuantityInput";
-import Loading from "../../components/loading/Loading";
-import Error from "../../components/error/Error";
+import { QuantityInput, Button } from "../../components/ui";
 
 const ProductInfo = () => {
   const [productInfo, setProductInfo] = useState<ProductInfoType>();
