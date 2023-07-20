@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { CgArrowLongRight } from "react-icons/cg";
 import { styles } from "../../styles";
 import { heroContents } from "../../helper";
+import { useSwipeable } from "react-swipeable";
 
 const Hero = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
@@ -29,8 +30,13 @@ const Hero = () => {
     setActiveIndex(newIndex);
   };
 
+  const handlers = useSwipeable({
+    onSwipedLeft: () => updateIndex(activeIndex + 1),
+    onSwipedRight: () => updateIndex(activeIndex - 1),
+  });
+
   return (
-    <div className="relative h-screen h-svh w-full stack">
+    <div className="relative h-screen h-svh w-full stack" {...handlers}>
       <Navbar />
       {heroContents.map((item, index) => (
         <div
