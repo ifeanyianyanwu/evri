@@ -2,7 +2,7 @@
 
 ## Demo
 
-Work in progress
+
 
 [View Live Site](https://evri.netlify.app/)
 
