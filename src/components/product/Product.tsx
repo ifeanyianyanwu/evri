@@ -60,7 +60,7 @@ const Product = ({ product, index, arrLength }: IProps) => {
           className="h-[100%] w-[100%] aspect-square group-hover/card:scale-110 transition-all duration-[0.5s] ease-in-out cursor-pointer object-contain"
         />
       </div>
-      <div className="translate-y-[40%] grid gap-2 p-4 group-hover/card:translate-y-0 transition-all duration-500">
+      <div className="translate-y-[50%] grid gap-2 p-4 group-hover/card:translate-y-0 transition-all duration-500">
         <p className="capitalize text-gray-600">{product.name}</p>
         <p className="text-gray-600">{formattedPrice}</p>
         <div className="flex justify-between items-center">
